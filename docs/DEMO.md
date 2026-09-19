@@ -18,6 +18,7 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 10 | Help requests | Back on the left, open **Help requests** | "The team gets a bundle, not a ping: what they pressed, why they may be struggling, the last 24 hours nearby, the tips they already saw, and what we don't know." |
 | 11 | Help requests | Write a reply and send | "The clinician writes the plan. The system never does." |
 | 12 | Client phone | Show the plan updating | "Their doctor's words, at the top of their plan, above the standard tips." |
+| 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
 | 13 | Inside the EHR | Open **Inside the EHR** | "None of this needs a new app. The same alert is a CDS Hooks card when a chart opens, and a FHIR RiskAssessment in the record. Every action and consent is logged." |
 
 ## Numbers worth quoting
@@ -32,6 +33,11 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 - API down → the web app runs on the example data with `VITE_USE_MOCKS=true` (the top bar shows "Sample data"), and the whole loop still works.
 - Map tiles won't load → the ZIP shapes are local, so the choropleth still draws; only the basemap is missing.
 - Fall back to the recorded video.
+
+## Things we found that we say out loud
+
+- On a citywide fireworks night there is often **no calmer route** — the honest answer is timing, not detours. The app says so rather than inventing a quiet path.
+- Exposure is ZIP-level, so routing avoids the worst areas, not the worst streets.
 
 ## What we would say about limits
 

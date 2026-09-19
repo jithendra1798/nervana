@@ -51,6 +51,8 @@ Base path `/v1`. Every `as_of` is optional and defaults to the scenario's `defau
 | `POST /v1/escalations` | `{patient_id, trigger: "need_help" \| "threshold", consent: true, note?}` | [escalation_created.json](fixtures/api/escalation_created.json) |
 | `GET /v1/escalations?status=open` | — | [escalations.json](fixtures/api/escalations.json) |
 | `POST /v1/escalations/{id}/respond` | `{text, clinician}` | [escalation_responded.json](fixtures/api/escalation_responded.json); the reply is also added to the patient's plan |
+| `GET /v1/patients/{id}/profile` · `PUT …/profile` | `{triggers[], helps[], home{air_conditioning, quiet_room}, support_person, safe_places[], notes, share_with_care_team}` | What the client told us about themselves, plus the options for the form |
+| `GET /v1/route?from=lat,lon&to=lat,lon&as_of=&trigger=` | — | The walk: `direct`, `recommended` (a detour when one is genuinely calmer), `by_hour` for the same path, and `timing.advice` |
 | `GET /v1/audit` | — | `{events[{at, event, …}]}` — every alert action, consent and reply |
 | `POST /v1/demo/reset` | — | Clears demo state (actions, help requests, plans) |
 | `GET /fhir/RiskAssessment?patient=&as_of=` | — | The same risk as a FHIR R4 RiskAssessment |
@@ -61,6 +63,7 @@ Field notes:
 
 - **One alert per event.** `alert_id` is `AL-<client>-<episode start hour>`, where the episode is the unbroken run of flagged hours. A client flagged from 8 PM to 2 AM produces one alert, not seven, and an alert already handled stays handled as the night goes on. `flagged_since` carries that start time.
 - Alerts come back `act` first, then by score. `count` is the total after filters, `shown` is how many are in this response (`limit`, default 100).
+- Tips carry a `source`: `care_team`, `your_profile` (built from the client's own answers) or `standard_tips`, and are returned in that order. `profile_note` is the one-line version for the care team, and only exists when the client ticked "share with my care team".
 - `GET /v1/patients/{id}/risk` also returns `exposure`: the raw numbers behind the severities (complaint counts, PM2.5, feels-like temperature) for the client's ZIP at that hour.
 
 - `band` on the map: `low` | `moderate` | `high`.

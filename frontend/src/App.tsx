@@ -8,6 +8,7 @@ import { useApi } from "./lib/hooks";
 import { resetMockState } from "./lib/mock";
 import { useTheme } from "./lib/theme";
 import { AboutYou } from "./pages/AboutYou";
+import { GoingOut } from "./pages/GoingOut";
 import { HelpRequests } from "./pages/HelpRequests";
 import { Inbox } from "./pages/Inbox";
 import { Integration } from "./pages/Integration";
@@ -75,6 +76,7 @@ export default function App() {
           <Route path="/me" element={<PatientPicker />} />
           <Route path="/me/:id" element={<PatientApp />} />
           <Route path="/me/:id/about" element={<AboutYou />} />
+          <Route path="/me/:id/going-out" element={<GoingOut />} />
           <Route path="/integration" element={<Integration />} />
         </Routes>
       )}

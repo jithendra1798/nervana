@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from . import fhir, personalize, recommend, workflow
+from . import fhir, personalize, recommend, routing, workflow
 from .store import get_store
 
 app = FastAPI(title="Nervana API", version="0.1.0",
@@ -275,6 +275,7 @@ def demo_reset() -> dict:
 
 
 app.include_router(fhir.router)
+app.include_router(routing.router)
 
 
 @app.get("/health")

@@ -83,6 +83,10 @@ export function PatientApp() {
           <p style={{ marginTop: 6 }}>{h.body}</p>
         </div>
 
+        <Link to={`/me/${r.patient.id}/going-out`} className="btn" style={{ width: "100%", marginBottom: 12 }}>
+          <Icon name="send" /> I have to go somewhere
+        </Link>
+
         {open ? <HelpFlow patientId={r.patient.id} careTeam={r.patient.care_team} onClose={() => setOpen(false)} /> : (
           <button className="help-btn" onClick={() => setOpen(true)}><Icon name="heart" size={20} /> I need help</button>
         )}
