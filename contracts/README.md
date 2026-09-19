@@ -44,15 +44,24 @@ Base path `/v1`. Every `as_of` is optional and defaults to the scenario's `defau
 | --- | --- | --- |
 | `GET /v1/scenario` | — | [scenario.json](fixtures/api/scenario.json) |
 | `GET /v1/map?as_of=&trigger=composite\|noise\|air\|heat` | — | [map.json](fixtures/api/map.json): `{as_of, trigger, zips[{zip, severity, band, top_trigger, noise, air, heat}]}` |
-| `GET /v1/alerts?as_of=&level=&program=` | — | [alerts.json](fixtures/api/alerts.json): `{as_of, count, alerts[]}`, highest score first |
+| `GET /v1/alerts?as_of=&level=&program=&care_team=&limit=` | — | [alerts.json](fixtures/api/alerts.json): `{as_of, count, shown, alerts[]}`, `act` first then by score |
 | `POST /v1/alerts/{alert_id}/action` | `{action: "outreach" \| "dismiss", reason?, clinician}` | [alert_action.json](fixtures/api/alert_action.json): the updated alert |
 | `GET /v1/patients/{id}/risk?as_of=` | — | [patient_risk.json](fixtures/api/patient_risk.json): patient, level, score, factors, uncertainty, `next_step`, `tips`, 24h `timeline` |
 | `GET /v1/patients/{id}/plan` | — | [plan.json](fixtures/api/plan.json): care-team items first, then standard tips |
 | `POST /v1/escalations` | `{patient_id, trigger: "need_help" \| "threshold", consent: true, note?}` | [escalation_created.json](fixtures/api/escalation_created.json) |
 | `GET /v1/escalations?status=open` | — | [escalations.json](fixtures/api/escalations.json) |
 | `POST /v1/escalations/{id}/respond` | `{text, clinician}` | [escalation_responded.json](fixtures/api/escalation_responded.json); the reply is also added to the patient's plan |
+| `GET /v1/audit` | — | `{events[{at, event, …}]}` — every alert action, consent and reply |
+| `POST /v1/demo/reset` | — | Clears demo state (actions, help requests, plans) |
+| `GET /fhir/RiskAssessment?patient=&as_of=` | — | The same risk as a FHIR R4 RiskAssessment |
+| `GET /cds-services` · `POST /cds-services/nervana-climate-ptsd` | CDS Hooks request | A `patient-view` card: summary, why, next step, override reasons |
+| `GET /v1/integration/preview?patient=&as_of=` | — | Card + FHIR + recent audit together, for the "Inside the EHR" screen |
 
 Field notes:
+
+- **One alert per event.** `alert_id` is `AL-<client>-<episode start hour>`, where the episode is the unbroken run of flagged hours. A client flagged from 8 PM to 2 AM produces one alert, not seven, and an alert already handled stays handled as the night goes on. `flagged_since` carries that start time.
+- Alerts come back `act` first, then by score. `count` is the total after filters, `shown` is how many are in this response (`limit`, default 100).
+- `GET /v1/patients/{id}/risk` also returns `exposure`: the raw numbers behind the severities (complaint counts, PM2.5, feels-like temperature) for the client's ZIP at that hour.
 
 - `band` on the map: `low` | `moderate` | `high`.
 - Alert `status`: `new` | `outreach` | `dismissed`.

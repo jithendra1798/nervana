@@ -75,14 +75,30 @@ EMS calls are a rare, blunt measure, and holidays change who calls, so this neit
     | Commercial | 0.3 |
     | House of Worship | 0.2 |
 
-- **Air.** Map PM2.5 onto EPA's bands: 35.5 µg/m³ (unhealthy for sensitive groups) → 0.4, 55.5 → 0.6, 125.5 → 0.85, 225.5 → 1.0. Official AQI uses 24-hour or NowCast averages; we use the hourly maximum as a sensitivity signal and should say so in the caveats.
-- **Heat.** Severity is 0 until the daily mean reaches 80.7°F. After that it follows the hourly heat index, from 80.7°F (0) to 100°F (1).
+- **Air.** Map PM2.5 onto EPA's bands: 35.5 µg/m³ (unhealthy for sensitive groups) → 0.4, 55.5 → 0.6, 125.5 → 0.85, 225.5 → 1.0. Official AQI uses 24-hour or NowCast averages; we use the hourly reading as a sensitivity signal and say so in the caveats.
+- **Heat.** Severity follows the hourly feels-like temperature, from 80.7°F (0) to 100°F (1). It counts **full weight on days whose NOAA mean reaches 80.7°F** (the Yoo threshold) and **half weight otherwise**: the threshold is a population-level daily measure, while a person in supported housing without air conditioning is still exposed on a hot afternoon. This split is our assumption, not a published rule.
 - **Caveats to put in every assessment:**
     - Exposure is estimated for the whole ZIP, not the person's block.
     - 311 complaints lag and depend on who reports.
     - Air quality comes from 5 monitors citywide.
     - There's no pharmacy data.
     - Contact details may be outdated.
+
+## What the model does with this
+
+Built in `pipelines/exposures.py` and `pipelines/score_ptsd.py`:
+
+```
+score = Σ trigger  weight × severity × (1 + general vulnerability + trigger vulnerability)
+```
+
+- **Trigger weights:** noise 0.55, heat 0.30, air 0.25. The map's composite uses 0.5 / 0.3 / 0.2.
+- **Noise severity:** log2(ratio) / 3, so 8× a usual night is 1.0, over a trailing 2-hour window.
+- **General vulnerability:** crisis visit in the last 30 days +0.35, ACT client +0.20, substance use +0.10.
+- **Trigger vulnerability:** veteran +0.25 on noise (VA guidance on fireworks); supported housing +0.30, age 65+ +0.20 and HVI 4–5 +0.20 on heat; age 65+ +0.15 on air.
+- **Levels:** act at 0.85, watch at 0.60, and act also needs at least one trigger at severity 0.4, so a heavy history alone never raises an alert on a quiet night.
+
+Environment sets the level and the person's history only multiplies it. That is what keeps the list empty during the day: on July 4 2023 nobody is flagged before 3 PM, 23 are "act" at 9 PM, and 41 at 11 PM, spread across 52 care teams, so a single team sees 1–6 people.
 
 ## Pulls for the replay
 

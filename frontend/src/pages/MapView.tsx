@@ -47,9 +47,12 @@ export function MapView() {
 
   const style = (f?: ZipFeature): PathOptions => {
     const z = f && byZip.get(f.properties.MODZCTA);
+    const hasClients = f ? (flagged.get(f.properties.MODZCTA) ?? 0) > 0 : false;
     return {
-      color: c.surface,
-      weight: 1,
+      // A ZIP holding flagged clients is outlined in ink: severity is the fill,
+      // "someone we serve is here" is the outline.
+      color: hasClients ? c.ink2 : c.surface,
+      weight: hasClients ? 2.5 : 1,
       fillColor: z ? c.seq[binOf(z.severity)] : c.noData,
       fillOpacity: z ? 0.78 : 0.35,
     };
@@ -111,8 +114,12 @@ export function MapView() {
             <div className="legend">
               <div className="legend-scale">{c.seq.map((s) => <span key={s} style={{ background: s }} />)}</div>
               <div className="legend-ticks"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100</span></div>
-              <div className="row small muted" style={{ marginTop: 4 }}>
-                <span className="key-dot" style={{ background: c.noData }} /> No data
+              <div className="row small muted" style={{ marginTop: 4, gap: 12 }}>
+                <span className="row" style={{ gap: 6 }}><span className="key-dot" style={{ background: c.noData }} /> No data</span>
+                <span className="row" style={{ gap: 6 }}>
+                  <span style={{ width: 12, height: 12, border: `2px solid ${c.ink2}`, borderRadius: 3, display: "inline-block" }} />
+                  Flagged clients here
+                </span>
               </div>
             </div>
             {trigger === "composite" && (

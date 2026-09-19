@@ -32,12 +32,27 @@ export function PatientPicker() {
   );
 }
 
+// Clients see plain language, never the clinician's sentence.
+const PLAIN: Record<string, { act: string; watch: string }> = {
+  noise: {
+    act: "It's much louder than usual around you tonight — fireworks and street noise.",
+    watch: "It's louder than usual around you tonight.",
+  },
+  heat: {
+    act: "It's much hotter than usual around you today.",
+    watch: "It's hotter than usual around you today.",
+  },
+  air: {
+    act: "The air around you is smoky right now.",
+    watch: "The air around you isn't great right now.",
+  },
+};
+
 function headline(r: PatientRisk): { title: string; body: string } {
-  const f = r.factors.find((x) => x.trigger !== "patient");
-  if (r.level === "act")
-    return { title: "Tonight may be hard around you", body: f ? `${f.label}.` : "Conditions near you are unusual right now." };
-  if (r.level === "watch")
-    return { title: "A heads-up for today", body: f ? `${f.label}.` : "Some conditions near you are higher than usual." };
+  const trigger = r.factors.find((x) => x.trigger !== "patient")?.trigger ?? "noise";
+  const plain = PLAIN[trigger] ?? PLAIN.noise;
+  if (r.level === "act") return { title: "Tonight may be hard around you", body: plain.act };
+  if (r.level === "watch") return { title: "A heads-up for today", body: plain.watch };
   return { title: "Nothing unusual near you right now", body: "We'll let you know if that changes." };
 }
 

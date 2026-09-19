@@ -1,0 +1,44 @@
+{
+ "id": "july4-2023",
+ "label": "July 4, 2023 · Independence Day fireworks",
+ "window_start": "2023-07-04T06:00:00-04:00",
+ "window_end": "2023-07-05T05:00:00-04:00",
+ "default_as_of": "2023-07-04T21:00:00-04:00",
+ "step": "PT1H",
+ "geo_level": "MODZCTA",
+ "is_fixture": false,
+ "roster_note": "150 synthetic clients with PTSD · 24 veterans · 13 with a crisis visit in the last 30 days",
+ "weights": {
+  "noise": 0.5,
+  "heat": 0.3,
+  "air": 0.2,
+  "act_at": 0.85,
+  "watch_at": 0.6
+ },
+ "sources": [
+  {
+   "name": "NYC 311 service requests (noise and fireworks)",
+   "url": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9"
+  },
+  {
+   "name": "EPA AQS hourly PM2.5, NYC monitors",
+   "url": "https://aqs.epa.gov/aqsweb/airdata/download_files.html"
+  },
+  {
+   "name": "Open-Meteo historical weather",
+   "url": "https://open-meteo.com/en/docs/historical-weather-api"
+  },
+  {
+   "name": "NOAA daily summaries, Central Park",
+   "url": "https://www.ncei.noaa.gov/access/search/datasets/daily-summaries/"
+  },
+  {
+   "name": "NYC Heat Vulnerability Index",
+   "url": "https://data.cityofnewyork.us/Health/Heat-Vulnerability-Index-Rankings/4mhf-duep"
+  },
+  {
+   "name": "Client roster: synthetic stand-in for the DOHMH dataset",
+   "url": "https://github.com/jithendra1798/nervana/blob/main/data/pipelines/roster.py"
+  }
+ ]
+}

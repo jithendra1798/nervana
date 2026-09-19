@@ -82,7 +82,7 @@ export function PatientDetail() {
           </section>
 
           <section className="card">
-            <div className="card-head"><h2>Conditions in ZIP {p.zip}, last 24 hours</h2><span className="small muted">0–100 severity</span></div>
+            <div className="card-head"><h2>Conditions in ZIP {p.zip}</h2><span className="small muted">through {fmtHour(r.as_of)} · 0–100 severity</span></div>
             <TimelineChart points={r.timeline} asOf={r.as_of} />
           </section>
         </div>
@@ -94,6 +94,12 @@ export function PatientDetail() {
               <span className="small muted">{r.next_step.source === "care_team" ? "Care-team plan" : "Standard guidance"}</span>
             </div>
             <p style={{ fontSize: 16 }}>{r.next_step.text}</p>
+
+            {alert?.flagged_since && (
+              <p className="small muted" style={{ marginTop: 10 }}>
+                Flagged since {fmtHour(alert.flagged_since)} · one alert for the whole event, so this doesn't re-fire every hour
+              </p>
+            )}
 
             {alert && (
               <div style={{ marginTop: 16 }}>

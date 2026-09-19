@@ -9,6 +9,7 @@ import { resetMockState } from "./lib/mock";
 import { useTheme } from "./lib/theme";
 import { HelpRequests } from "./pages/HelpRequests";
 import { Inbox } from "./pages/Inbox";
+import { Integration } from "./pages/Integration";
 import { MapView } from "./pages/MapView";
 import { PatientApp, PatientPicker } from "./pages/PatientApp";
 import { PatientDetail } from "./pages/PatientDetail";
@@ -29,6 +30,7 @@ function TopBar() {
           Help requests{openCount > 0 && <span className="count-pill" aria-label={`${openCount} open`}>{openCount}</span>}
         </NavLink>
         <NavLink to="/me">Client view</NavLink>
+        <NavLink to="/integration">Inside the EHR</NavLink>
       </nav>
       <div className="topbar-right">
         {hours.length > 0 && asOf && (
@@ -71,6 +73,7 @@ export default function App() {
           <Route path="/help-requests" element={<HelpRequests />} />
           <Route path="/me" element={<PatientPicker />} />
           <Route path="/me/:id" element={<PatientApp />} />
+          <Route path="/integration" element={<Integration />} />
         </Routes>
       )}
     </>
