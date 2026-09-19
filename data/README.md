@@ -11,7 +11,7 @@ data/
   pipelines/
     patients.py        synthetic DOHMH roster → patients.json
     noise_311.py       311 noise counts + each ZIP's normal level
-    weather_air.py     Open-Meteo historical weather + air quality
+    weather_air.py     NOAA + Open-Meteo historical weather, EPA hourly PM2.5
     exposures.py       0–1 severities + composite → exposures.json
     score_ptsd.py      PTSD score, level, reasons, confidence → risk.json
     build.py           runs everything: python -m pipelines.build --scenario july4
@@ -40,8 +40,8 @@ About 5.25 hours of must-haves.
 | --- | --- | --- | --- |
 | D0 | Set up the folder and copy the fixtures into `out/demo/` (above); push | 0.25 | Must, first |
 | D1 | Synthetic DOHMH data → `patients.json`: PTSD patients (diagnosis code F43.1x), veteran field if there is one, ZIP → MODZCTA, flags, contact date. Pick a demo patient in Long Island City (11101). **Post a readout in Slack by 17:15.** | 0.75 | Must |
-| D5 | Replay scenario: pick the day (July 4th evening suggested; June 7 2023 wildfire smoke as backup), use a 24-hour window, and pull hourly weather + air quality | 1.0 | Must |
-| D2 | 311 noise: hourly counts per ZIP in the window, compared with that ZIP's average for the same hour and weekday over the past 12 months. Weight fireworks, helicopter and construction higher. | 1.0 | Must |
+| D5 | Replay scenario **July 4 2023, 06:00 → 05:59** (decided; see [RESEARCH.md](RESEARCH.md)). Pull EPA hourly PM2.5, NOAA Central Park, and Open-Meteo historical hourly weather. | 1.0 | Must |
+| D2 | 311 noise from `erm2-nwe9`, not the `igcr-kbaw` view, which drops fireworks. Take hourly counts per ZIP and compare each with that ZIP's normal for the same weekday and hour over the prior 12 months (one query per month). Apply the complaint-type weights in RESEARCH.md. | 1.0 | Must |
 | M1 | Turn each trigger into a 0–1 severity plus a weighted `composite` → `exposures.json` | 0.5 | Must |
 | M2 | PTSD score = trigger weight × severity × patient factors (recent crisis visit, ACT team or supported housing, substance use, age 65+, the ZIP's heat vulnerability). Output a level plus the top 3 reasons as plain sentences → `risk.json` for every hour | 1.25 | Must |
 | M3 | Confidence and caveats: ZIP-level estimate, 311 reporting bias, outdated contact info, no pharmacy data | 0.5 | Must |
@@ -51,16 +51,16 @@ About 5.25 hours of must-haves.
 
 ## Sources
 
+Tested sources, the numbers behind the choice of replay day, evidence for each trigger, scoring notes and the exact pulls are in **[RESEARCH.md](RESEARCH.md)**.
+
 | Source | Use | Notes |
 | --- | --- | --- |
-| Synthetic DOHMH dataset (host's Master List, link in Slack) | Patients | Keep it in `raw/` only |
-| [NYC 311 noise](https://data.cityofnewyork.us/Social-Services/noise/igcr-kbaw/about_data) | Noise | Has `incident_zip`, `complaint_type`, `created_date`. Aggregate in the Socrata query (group by ZIP, weekday, hour and type) instead of downloading raw rows. |
-| [Open-Meteo historical weather](https://open-meteo.com/en/docs/historical-weather-api) | Heat | Hourly temperature, humidity, apparent temperature; no key needed |
-| [Open-Meteo air quality](https://open-meteo.com/en/docs/air-quality-api) | Air | Hourly `us_aqi`, `pm2_5` |
-| [NYC Heat Vulnerability Index](https://data.cityofnewyork.us/Health/Heat-Vulnerability-Index-Rankings/4mhf-duep) | Patient factor | Rank 1–5 per ZIP |
+| Synthetic DOHMH dataset (via Slack) | Patients | Keep it in `raw/` only. It includes a flood zone for each client. |
+| [NYC 311](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9) (`erm2-nwe9`) | Noise | Aggregate in the Socrata query; run the 12-month baseline one month at a time |
+| [EPA AQS hourly PM2.5](https://aqs.epa.gov/aqsweb/airdata/download_files.html) | Air | Observed; 5 NYC monitors. Modeled air quality understates smoke by 3–4×. |
+| [NOAA Central Park](https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00094728&startDate=2023-07-04&endDate=2023-07-04&dataTypes=TMAX,TMIN&units=standard&format=json) + [Open-Meteo historical](https://open-meteo.com/en/docs/historical-weather-api) | Heat | NOAA for the daily mean (80.7°F threshold); Open-Meteo for the hourly shape |
+| [NYC Heat Vulnerability Index](https://data.cityofnewyork.us/Health/Heat-Vulnerability-Index-Rankings/4mhf-duep) | Patient factor | Fields `zcta20`, `hvi` (1–5) |
 | [ZIP boundaries (MODZCTA)](https://raw.githubusercontent.com/nychealth/coronavirus-data/master/Geography-resources/MODZCTA_2010_WGS1984.geo.json) | ZIP list and centroids | 178 areas; key `MODZCTA` |
-
-Weather barely changes from one ZIP to the next at Open-Meteo's resolution. One point per borough is fine; add that to the caveats.
 
 ## Handoffs
 
