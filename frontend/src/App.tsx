@@ -7,6 +7,7 @@ import { fmtHour } from "./lib/format";
 import { useApi } from "./lib/hooks";
 import { resetMockState } from "./lib/mock";
 import { useTheme } from "./lib/theme";
+import { AboutYou } from "./pages/AboutYou";
 import { HelpRequests } from "./pages/HelpRequests";
 import { Inbox } from "./pages/Inbox";
 import { Integration } from "./pages/Integration";
@@ -73,6 +74,7 @@ export default function App() {
           <Route path="/help-requests" element={<HelpRequests />} />
           <Route path="/me" element={<PatientPicker />} />
           <Route path="/me/:id" element={<PatientApp />} />
+          <Route path="/me/:id/about" element={<AboutYou />} />
           <Route path="/integration" element={<Integration />} />
         </Routes>
       )}

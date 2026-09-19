@@ -149,11 +149,23 @@ export function PatientDetail() {
             )}
           </section>
 
+          {r.profile_note && (
+            <section className="card">
+              <div className="card-head"><h2>What they told us</h2><span className="small muted">shared by the client</span></div>
+              <p>{r.profile_note}</p>
+            </section>
+          )}
+
           <section className="card">
             <div className="card-head"><h2>Tips the client sees</h2></div>
             {r.tips.length ? (
               <ul className="plain-list">
-                {r.tips.map((t) => <li key={t.text} className="plan-item">{t.text}</li>)}
+                {r.tips.map((t) => (
+                  <li key={t.text} className={`plan-item ${t.source === "your_profile" ? "personal" : ""}`}>
+                    {t.text}
+                    {t.source === "your_profile" && <div className="plan-meta">From their own answers</div>}
+                  </li>
+                ))}
               </ul>
             ) : (
               <p className="subtle small">No tips right now.</p>

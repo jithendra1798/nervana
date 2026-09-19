@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from . import fhir, recommend, workflow
+from . import fhir, personalize, recommend, workflow
 from .store import get_store
 
 app = FastAPI(title="Nervana API", version="0.1.0",
@@ -127,6 +127,7 @@ def _risk_payload(patient_id: str, hour: datetime) -> dict:
     row = s.risk_for(patient_id, hour)
     factors = row["factors"] if row else []
     plan = workflow.care_plan(patient_id)
+    profile = workflow.profile(patient_id)
     exposure = s.exposure_for(p["zip"], hour) or {}
     caveats = row["uncertainty"]["caveats"] if row else [
         f"Exposure is estimated for all of ZIP {p['zip']}, not this person's block",
@@ -140,7 +141,9 @@ def _risk_payload(patient_id: str, hour: datetime) -> dict:
         "factors": factors,
         "uncertainty": {"confidence": row["uncertainty"]["confidence"] if row else "medium", "caveats": caveats},
         "next_step": recommend.next_step(row["level"] if row else "none", factors, plan),
-        "tips": recommend.tips_for(factors),
+        "tips": personalize.merge(personalize.personal_tips(profile, factors), recommend.tips_for(factors)),
+        "profile_note": personalize.clinician_note(profile, factors),
+        "has_profile": bool(profile),
         "timeline": s.timeline(p["zip"], hour),
         "exposure": {k: exposure.get(k) for k in ("noise", "heat", "air", "composite")} | {"raw": exposure.get("raw", {})},
     }
@@ -158,10 +161,12 @@ def patient_plan(patient_id: str, as_of: str | None = None) -> dict:
     if not s.patient(patient_id):
         raise HTTPException(404, f"No client {patient_id}")
     row = s.risk_for(patient_id, hour)
-    tips = recommend.tips_for(row["factors"] if row else [])
+    factors = row["factors"] if row else []
+    personal = personalize.personal_tips(workflow.profile(patient_id), factors)
+    tips = recommend.tips_for(factors)
     care = sorted(workflow.care_plan(patient_id), key=lambda i: i["created_at"], reverse=True)
-    return {"patient_id": patient_id,
-            "items": care + [{"text": t["text"], "author": None, "source": "standard_tips", "created_at": None} for t in tips]}
+    as_item = lambda t: {"text": t["text"], "author": None, "source": t.get("source", "standard_tips"), "created_at": None}
+    return {"patient_id": patient_id, "items": care + [as_item(t) for t in personalize.merge(personal, tips)]}
 
 
 class EscalationBody(BaseModel):
@@ -227,6 +232,34 @@ def respond(escalation_id: str, body: RespondBody) -> dict:
     if not esc:
         raise HTTPException(404, f"No help request {escalation_id}")
     return workflow.answer_escalation(esc, body.text.strip(), body.clinician)
+
+
+class ProfileBody(BaseModel):
+    triggers: list[str] = []
+    helps: list[str] = []
+    home: dict[str, bool | None] = {}
+    support_person: str | None = Field(default=None, max_length=120)
+    safe_places: list[str] = []
+    notes: str | None = Field(default=None, max_length=1000)
+    share_with_care_team: bool = False
+
+
+@app.get("/v1/patients/{patient_id}/profile")
+def get_profile(patient_id: str) -> dict:
+    """What the client told us about themselves. Empty until they fill the form in."""
+    s = get_store()
+    if not s.patient(patient_id):
+        raise HTTPException(404, f"No client {patient_id}")
+    return {"patient_id": patient_id, "profile": workflow.profile(patient_id), "options": personalize.PROFILE_OPTIONS}
+
+
+@app.put("/v1/patients/{patient_id}/profile")
+def put_profile(patient_id: str, body: ProfileBody) -> dict:
+    s = get_store()
+    if not s.patient(patient_id):
+        raise HTTPException(404, f"No client {patient_id}")
+    saved = workflow.save_profile(patient_id, body.model_dump())
+    return {"patient_id": patient_id, "profile": saved, "options": personalize.PROFILE_OPTIONS}
 
 
 @app.get("/v1/audit")

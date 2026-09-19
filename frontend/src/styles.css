@@ -26,12 +26,13 @@
   --warning-wash: rgba(250, 178, 25, 0.16);
   --good-text: #006300;
 
-  /* Map: sequential blue, ordinal steps 250→650 (validated --ordinal). */
-  --seq-1: #86b6ef;
-  --seq-2: #5598e7;
-  --seq-3: #2a78d6;
-  --seq-4: #1c5cab;
-  --seq-5: #104281;
+  /* Map: warm single-hue ramp, light→dark, so "hotter" reads as worse.
+     Validated with the ordinal checks in both modes. */
+  --seq-1: #e89f57;
+  --seq-2: #dd8138;
+  --seq-3: #cc631c;
+  --seq-4: #a5450f;
+  --seq-5: #762f08;
   --no-data: #d6d5cf;
 
   --button: #0b0b0b;
@@ -59,11 +60,11 @@
     --critical-wash: rgba(208, 59, 59, 0.2);
     --warning-wash: rgba(250, 178, 25, 0.16);
     --good-text: #0ca30c;
-    --seq-1: #184f95;
-    --seq-2: #256abf;
-    --seq-3: #3987e5;
-    --seq-4: #6da7ec;
-    --seq-5: #9ec5f4;
+    --seq-1: #8f4415;
+    --seq-2: #b85a1e;
+    --seq-3: #da7930;
+    --seq-4: #ec9d57;
+    --seq-5: #f6bf8d;
     --no-data: #383835;
     --button: #ffffff;
     --button-ink: #0b0b0b;
@@ -87,11 +88,11 @@
   --critical-wash: rgba(208, 59, 59, 0.2);
   --warning-wash: rgba(250, 178, 25, 0.16);
   --good-text: #0ca30c;
-  --seq-1: #184f95;
-  --seq-2: #256abf;
-  --seq-3: #3987e5;
-  --seq-4: #6da7ec;
-  --seq-5: #9ec5f4;
+  --seq-1: #8f4415;
+  --seq-2: #b85a1e;
+  --seq-3: #da7930;
+  --seq-4: #ec9d57;
+  --seq-5: #f6bf8d;
   --no-data: #383835;
   --button: #ffffff;
   --button-ink: #0b0b0b;
@@ -262,6 +263,17 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .req[aria-current="true"] { box-shadow: 0 0 0 2px var(--ink); }
 .req:hover { background: var(--hover); }
 .empty { padding: 36px 18px; text-align: center; color: var(--ink-2); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 7px 13px; font-size: 14px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip:hover { background: var(--hover); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: transparent; }
+.tip-source { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
+.plan-item.personal { border-left: 3px solid var(--air); }
 
 /* ---------- patient phone view ---------- */
 .phone-stage { display: grid; place-items: start center; padding: 24px 12px 48px; }

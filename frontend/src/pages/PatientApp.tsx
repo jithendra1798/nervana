@@ -87,14 +87,25 @@ export function PatientApp() {
           <button className="help-btn" onClick={() => setOpen(true)}><Icon name="heart" size={20} /> I need help</button>
         )}
 
-        <h2 style={{ margin: "22px 0 10px" }}>Your plan</h2>
+        {!r.has_profile && (
+          <Link to={`/me/${r.patient.id}/about`} className="notice" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
+            <b>Tell us what helps you</b>
+            <div className="small subtle" style={{ marginTop: 4 }}>Five questions, once. Then this advice is yours, not generic.</div>
+          </Link>
+        )}
+
+        <div className="row" style={{ justifyContent: "space-between", margin: "22px 0 10px" }}>
+          <h2>Your plan</h2>
+          <Link className="small subtle" to={`/me/${r.patient.id}/about`}>About you</Link>
+        </div>
         {plan.error && <ErrorBox error={plan.error} />}
         {items.length ? (
           <ul className="plain-list">
             {items.map((i) => (
-              <li key={i.text + i.created_at} className={`plan-item ${i.source === "care_team" ? "care" : ""}`}>
+              <li key={i.text + i.created_at} className={`plan-item ${i.source === "care_team" ? "care" : i.source === "your_profile" ? "personal" : ""}`}>
                 {i.text}
                 {i.source === "care_team" && <div className="plan-meta">From {i.author}{i.created_at ? ` · ${fmtDateTime(i.created_at)}` : ""}</div>}
+                {i.source === "your_profile" && <div className="plan-meta">Based on what you told us</div>}
               </li>
             ))}
           </ul>

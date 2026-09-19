@@ -220,3 +220,6 @@ __marimo__/
 # Nervana
 data/raw/
 node_modules/
+
+# backend demo state
+backend/.state.json

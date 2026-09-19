@@ -33,7 +33,7 @@ def top_trigger(factors: list[dict]) -> str:
 
 def tips_for(factors: list[dict]) -> list[dict]:
     seen = [f["trigger"] for f in factors if f["trigger"] != "patient"]
-    return [{"trigger": t, "text": text} for t in dict.fromkeys(seen) for text in TIPS.get(t, [])]
+    return [{"trigger": t, "text": text, "source": "standard_tips"} for t in dict.fromkeys(seen) for text in TIPS.get(t, [])]
 
 
 def next_step(level: str, factors: list[dict], care_plan: list[dict]) -> dict:

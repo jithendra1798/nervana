@@ -1,9 +1,10 @@
 import type { Feature, FeatureCollection, Geometry } from "geojson";
-import type { Layer, PathOptions } from "leaflet";
+import L, { type Layer, type PathOptions } from "leaflet";
 import { useEffect, useMemo, useState } from "react";
-import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
+import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import { TriggerKey } from "../components/Badges";
+import { Icon } from "../components/Icon";
 import { ErrorBox } from "../components/States";
 import { api } from "../lib/api";
 import { useAsOf } from "../lib/asOf";
@@ -23,6 +24,15 @@ const loadShapes = () => (shapes ??= fetch("/modzcta.geojson").then((r) => r.jso
 
 const binOf = (s: number) => BINS.filter((b) => s >= b).length; // 0..4
 
+/** Zooms the map when a ZIP is searched for or clicked. */
+function FocusZip({ feature }: { feature: ZipFeature | undefined }) {
+  const map = useMap();
+  useEffect(() => {
+    if (feature) map.fitBounds(L.geoJSON(feature).getBounds(), { maxZoom: 14, padding: [24, 24] });
+  }, [feature, map]);
+  return null;
+}
+
 export function MapView() {
   const { asOf } = useAsOf();
   const nav = useNavigate();
@@ -30,6 +40,8 @@ export function MapView() {
   const { resolved } = useTheme();
   const [trigger, setTrigger] = useState<(typeof TRIGGERS)[number]>("composite");
   const [geo, setGeo] = useState<FeatureCollection<Geometry, Props>>();
+  const [query, setQuery] = useState("");
+  const [focus, setFocus] = useState<string>();
   const map = useApi(() => (asOf ? api.map(asOf, trigger) : Promise.resolve(undefined)), [asOf, trigger]);
   const alerts = useApi(() => (asOf ? api.alerts(asOf) : Promise.resolve(undefined)), [asOf]);
 
@@ -44,15 +56,28 @@ export function MapView() {
     return m;
   }, [alerts.data]);
   const top = [...(map.data?.zips ?? [])].sort((a, b) => b.severity - a.severity).slice(0, 10);
+  const focusFeature = useMemo(
+    () => (focus ? geo?.features.find((f) => f.properties.MODZCTA === focus) : undefined),
+    [focus, geo],
+  );
+  const focusZip = focus ? byZip.get(focus) : undefined;
+
+  const search = (raw: string) => {
+    const q = raw.trim();
+    if (!q || !geo) return;
+    const hit = geo.features.find((f) => f.properties.MODZCTA === q)
+      ?? geo.features.find((f) => f.properties.label.includes(q));
+    setFocus(hit?.properties.MODZCTA);
+  };
 
   const style = (f?: ZipFeature): PathOptions => {
     const z = f && byZip.get(f.properties.MODZCTA);
     const hasClients = f ? (flagged.get(f.properties.MODZCTA) ?? 0) > 0 : false;
+    const isFocus = f?.properties.MODZCTA === focus;
     return {
-      // A ZIP holding flagged clients is outlined in ink: severity is the fill,
-      // "someone we serve is here" is the outline.
-      color: hasClients ? c.ink2 : c.surface,
-      weight: hasClients ? 2.5 : 1,
+      // Fill carries severity; the outline says "clients we serve live here".
+      color: isFocus ? c.noise : hasClients ? c.ink2 : c.surface,
+      weight: isFocus ? 4 : hasClients ? 2.5 : 1,
       fillColor: z ? c.seq[binOf(z.severity)] : c.noData,
       fillOpacity: z ? 0.78 : 0.35,
     };
@@ -78,6 +103,7 @@ export function MapView() {
       el.appendChild(d);
     }
     layer.bindTooltip(el, { sticky: true, className: "zip-tip" });
+    layer.on("click", () => setFocus(f.properties.MODZCTA));
   };
 
   return (
@@ -97,6 +123,12 @@ export function MapView() {
             </button>
           ))}
         </div>
+        <form className="row" style={{ gap: 6 }} onSubmit={(e) => { e.preventDefault(); search(query); }}>
+          <input type="text" inputMode="numeric" value={query} placeholder="Find a ZIP, e.g. 11101"
+            onChange={(e) => setQuery(e.target.value)} style={{ width: 175 }} aria-label="Find a ZIP" />
+          <button className="btn" type="submit">Find</button>
+          {focus && <button className="btn ghost" type="button" onClick={() => { setFocus(undefined); setQuery(""); }}>Clear</button>}
+        </form>
       </div>
       {map.error && <ErrorBox error={map.error} />}
       <div className="map-layout">
@@ -104,11 +136,29 @@ export function MapView() {
           <MapContainer center={[40.73, -73.93]} zoom={11} minZoom={10} scrollWheelZoom style={{ height: "100%", width: "100%" }}>
             <TileLayer key={resolved} url={c.tiles} attribution="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors" maxZoom={16} />
             {geo && map.data && (
-              <GeoJSON key={`${map.data.as_of}-${trigger}-${resolved}-${flagged.size}`} data={geo} style={style as never} onEachFeature={onEach as never} />
+              <GeoJSON key={`${map.data.as_of}-${trigger}-${resolved}-${flagged.size}-${focus ?? ""}`} data={geo}
+                style={style as never} onEachFeature={onEach as never} />
             )}
+            <FocusZip feature={focusFeature} />
           </MapContainer>
         </div>
         <div>
+          {focusZip && (
+            <div className="card">
+              <div className="card-head">
+                <h3>ZIP {focusZip.zip}</h3>
+                <span className="badge status">{pct(focusZip.severity)} · {focusZip.band}</span>
+              </div>
+              <div className="row small" style={{ gap: 14 }}>
+                <TriggerKey trigger="noise" label={`Noise ${pct(focusZip.noise)}`} />
+                <TriggerKey trigger="heat" label={`Heat ${pct(focusZip.heat)}`} />
+                <TriggerKey trigger="air" label={`Air ${pct(focusZip.air)}`} />
+              </div>
+              <p className="small muted" style={{ marginTop: 10 }}>
+                {flagged.get(focusZip.zip) ?? 0} flagged client(s) here
+              </p>
+            </div>
+          )}
           <div className="card">
             <h3 style={{ marginBottom: 10 }}>{TRIGGER_LABEL[trigger]} severity</h3>
             <div className="legend">
@@ -137,8 +187,8 @@ export function MapView() {
               <thead><tr><th>ZIP</th><th className="num">Severity</th><th>Main</th><th className="num">Flagged</th></tr></thead>
               <tbody>
                 {top.map((z) => (
-                  <tr key={z.zip} className={flagged.get(z.zip) ? "clickable" : undefined}
-                    onClick={() => flagged.get(z.zip) && nav("/")}>
+                  <tr key={z.zip} className="clickable" onClick={() => setFocus(z.zip)}
+                    onDoubleClick={() => flagged.get(z.zip) && nav("/")}>
                     <td>{z.zip}</td>
                     <td className="num">{pct(z.severity)}</td>
                     <td><TriggerKey trigger={z.top_trigger} label={TRIGGER_LABEL[z.top_trigger]} /></td>
@@ -147,6 +197,9 @@ export function MapView() {
                 ))}
               </tbody>
             </table>
+            <p className="small muted" style={{ marginTop: 8 }}>
+              <Icon name="eye" size={13} /> Click a row, or a ZIP on the map, to zoom to it.
+            </p>
           </div>
         </div>
       </div>
