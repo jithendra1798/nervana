@@ -1,0 +1,76 @@
+[
+  {
+    "id": "SYN-0142",
+    "name": "R.M.",
+    "age": 34,
+    "zip": "11101",
+    "program": "ACT",
+    "diagnoses": [
+      "F43.10 PTSD",
+      "F10.20 Alcohol use disorder"
+    ],
+    "veteran": true,
+    "care_team": "LIC ACT Team 2",
+    "contact_last_updated": "2024-07-02",
+    "flags": {
+      "recent_crisis_visit": true,
+      "substance_use": true,
+      "supported_housing": false
+    }
+  },
+  {
+    "id": "SYN-0217",
+    "name": "D.K.",
+    "age": 67,
+    "zip": "11106",
+    "program": "Outpatient clinic",
+    "diagnoses": [
+      "F43.12 PTSD, chronic"
+    ],
+    "veteran": false,
+    "care_team": "Astoria Clinic",
+    "contact_last_updated": "2025-05-20",
+    "flags": {
+      "recent_crisis_visit": false,
+      "substance_use": false,
+      "supported_housing": true
+    }
+  },
+  {
+    "id": "SYN-0388",
+    "name": "A.T.",
+    "age": 45,
+    "zip": "10456",
+    "program": "Supported housing",
+    "diagnoses": [
+      "F43.10 PTSD",
+      "F33.1 Major depressive disorder"
+    ],
+    "veteran": null,
+    "care_team": "Bronx Supported Housing",
+    "contact_last_updated": "2025-01-14",
+    "flags": {
+      "recent_crisis_visit": false,
+      "substance_use": false,
+      "supported_housing": true
+    }
+  },
+  {
+    "id": "SYN-0451",
+    "name": "J.P.",
+    "age": 29,
+    "zip": "11104",
+    "program": "Outpatient clinic",
+    "diagnoses": [
+      "F43.10 PTSD"
+    ],
+    "veteran": true,
+    "care_team": "Sunnyside Clinic",
+    "contact_last_updated": "2025-06-30",
+    "flags": {
+      "recent_crisis_visit": false,
+      "substance_use": false,
+      "supported_housing": false
+    }
+  }
+]

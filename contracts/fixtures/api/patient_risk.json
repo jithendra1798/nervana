@@ -1,0 +1,236 @@
+{
+  "patient": {
+    "id": "SYN-0142",
+    "name": "R.M.",
+    "age": 34,
+    "zip": "11101",
+    "program": "ACT",
+    "diagnoses": [
+      "F43.10 PTSD",
+      "F10.20 Alcohol use disorder"
+    ],
+    "veteran": true,
+    "care_team": "LIC ACT Team 2",
+    "contact_last_updated": "2024-07-02",
+    "flags": {
+      "recent_crisis_visit": true,
+      "substance_use": true,
+      "supported_housing": false
+    }
+  },
+  "as_of": "2025-07-04T21:00:00-04:00",
+  "level": "act",
+  "score": 0.72,
+  "factors": [
+    {
+      "trigger": "noise",
+      "label": "Fireworks and loud-noise complaints 7.6× usual for 11101 this hour",
+      "contribution": 0.46,
+      "source": "NYC 311"
+    },
+    {
+      "trigger": "patient",
+      "label": "Crisis visit in the last 30 days",
+      "contribution": 0.21,
+      "source": "Synthetic DOHMH services"
+    }
+  ],
+  "uncertainty": {
+    "confidence": "medium",
+    "caveats": [
+      "Noise is estimated from 311 complaints, which lag and depend on who reports",
+      "Exposure is estimated for the whole ZIP, not the person's block",
+      "Contact details last updated 2024-07-02",
+      "No pharmacy data: medication effects are not assessed"
+    ]
+  },
+  "next_step": {
+    "action": "phone_outreach",
+    "text": "Call before 10pm. Review the grounding plan and check the patient has earplugs or headphones.",
+    "source": "standard_tips"
+  },
+  "tips": [
+    {
+      "trigger": "noise",
+      "text": "Wear earplugs or noise-cancelling headphones during the fireworks window (about 9 to 11pm)."
+    },
+    {
+      "trigger": "noise",
+      "text": "Grounding: breathe in for 1 and out for 1, then 2 and 2, up to 5 or 6."
+    },
+    {
+      "trigger": "heat",
+      "text": "Drink water every hour; use AC or a cooling center if home is hot."
+    }
+  ],
+  "timeline": [
+    {
+      "hour": "2025-07-04T06:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-04T07:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-04T08:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.2,
+      "composite": 0.06
+    },
+    {
+      "hour": "2025-07-04T09:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.2,
+      "composite": 0.06
+    },
+    {
+      "hour": "2025-07-04T10:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.24,
+      "composite": 0.07
+    },
+    {
+      "hour": "2025-07-04T11:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.32,
+      "composite": 0.1
+    },
+    {
+      "hour": "2025-07-04T12:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.4,
+      "composite": 0.12
+    },
+    {
+      "hour": "2025-07-04T13:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.48,
+      "composite": 0.14
+    },
+    {
+      "hour": "2025-07-04T14:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.52,
+      "composite": 0.16
+    },
+    {
+      "hour": "2025-07-04T15:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.56,
+      "composite": 0.17
+    },
+    {
+      "hour": "2025-07-04T16:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.52,
+      "composite": 0.16
+    },
+    {
+      "hour": "2025-07-04T17:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.48,
+      "composite": 0.14
+    },
+    {
+      "hour": "2025-07-04T18:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.4,
+      "composite": 0.12
+    },
+    {
+      "hour": "2025-07-04T19:00:00-04:00",
+      "noise": 0.02,
+      "air": 0,
+      "heat": 0.32,
+      "composite": 0.11
+    },
+    {
+      "hour": "2025-07-04T20:00:00-04:00",
+      "noise": 0.23,
+      "air": 0,
+      "heat": 0.24,
+      "composite": 0.19
+    },
+    {
+      "hour": "2025-07-04T21:00:00-04:00",
+      "noise": 0.83,
+      "air": 0.18,
+      "heat": 0.2,
+      "composite": 0.51
+    },
+    {
+      "hour": "2025-07-04T22:00:00-04:00",
+      "noise": 0.83,
+      "air": 0.18,
+      "heat": 0.2,
+      "composite": 0.51
+    },
+    {
+      "hour": "2025-07-04T23:00:00-04:00",
+      "noise": 0.23,
+      "air": 0.18,
+      "heat": 0.16,
+      "composite": 0.2
+    },
+    {
+      "hour": "2025-07-05T00:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-05T01:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-05T02:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-05T03:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-05T04:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    },
+    {
+      "hour": "2025-07-05T05:00:00-04:00",
+      "noise": 0,
+      "air": 0,
+      "heat": 0.16,
+      "composite": 0.05
+    }
+  ]
+}

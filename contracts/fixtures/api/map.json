@@ -1,0 +1,51 @@
+{
+  "as_of": "2025-07-04T21:00:00-04:00",
+  "trigger": "composite",
+  "zips": [
+    {
+      "zip": "11101",
+      "severity": 0.51,
+      "band": "high",
+      "top_trigger": "noise",
+      "noise": 0.83,
+      "air": 0.18,
+      "heat": 0.2
+    },
+    {
+      "zip": "11106",
+      "severity": 0.3,
+      "band": "moderate",
+      "top_trigger": "noise",
+      "noise": 0.43,
+      "air": 0.18,
+      "heat": 0.16
+    },
+    {
+      "zip": "11104",
+      "severity": 0.2,
+      "band": "low",
+      "top_trigger": "noise",
+      "noise": 0.23,
+      "air": 0.18,
+      "heat": 0.16
+    },
+    {
+      "zip": "10456",
+      "severity": 0.3,
+      "band": "moderate",
+      "top_trigger": "noise",
+      "noise": 0.33,
+      "air": 0.18,
+      "heat": 0.32
+    },
+    {
+      "zip": "10029",
+      "severity": 0.26,
+      "band": "moderate",
+      "top_trigger": "noise",
+      "noise": 0.27,
+      "air": 0.18,
+      "heat": 0.28
+    }
+  ]
+}

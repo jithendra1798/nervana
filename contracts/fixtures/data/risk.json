@@ -1,0 +1,230 @@
+{
+  "2025-07-04T20:00:00-04:00": [
+    {
+      "patient_id": "SYN-0388",
+      "as_of": "2025-07-04T20:00:00-04:00",
+      "level": "watch",
+      "score": 0.58,
+      "factors": [
+        {
+          "trigger": "heat",
+          "label": "Heat index 89°F; this ZIP ranks 5 of 5 on heat vulnerability",
+          "contribution": 0.43,
+          "source": "Open-Meteo + NYC HVI"
+        },
+        {
+          "trigger": "patient",
+          "label": "Supported housing: home may lack air conditioning",
+          "contribution": 0.1,
+          "source": "Synthetic DOHMH roster"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    }
+  ],
+  "2025-07-04T21:00:00-04:00": [
+    {
+      "patient_id": "SYN-0142",
+      "as_of": "2025-07-04T21:00:00-04:00",
+      "level": "act",
+      "score": 0.72,
+      "factors": [
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 7.6× usual for 11101 this hour",
+          "contribution": 0.46,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Crisis visit in the last 30 days",
+          "contribution": 0.21,
+          "source": "Synthetic DOHMH services"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "Contact details last updated 2024-07-02",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    },
+    {
+      "patient_id": "SYN-0217",
+      "as_of": "2025-07-04T21:00:00-04:00",
+      "level": "watch",
+      "score": 0.47,
+      "factors": [
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 4.4× usual for 11106 this hour",
+          "contribution": 0.24,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Supported housing: home may lack air conditioning",
+          "contribution": 0.1,
+          "source": "Synthetic DOHMH roster"
+        },
+        {
+          "trigger": "patient",
+          "label": "Age 65+",
+          "contribution": 0.08,
+          "source": "Synthetic DOHMH roster"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    },
+    {
+      "patient_id": "SYN-0388",
+      "as_of": "2025-07-04T21:00:00-04:00",
+      "level": "act",
+      "score": 0.74,
+      "factors": [
+        {
+          "trigger": "heat",
+          "label": "Heat index 88°F; this ZIP ranks 5 of 5 on heat vulnerability",
+          "contribution": 0.41,
+          "source": "Open-Meteo + NYC HVI"
+        },
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 3.6× usual for 10456 this hour",
+          "contribution": 0.18,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Supported housing: home may lack air conditioning",
+          "contribution": 0.1,
+          "source": "Synthetic DOHMH roster"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    }
+  ],
+  "2025-07-04T22:00:00-04:00": [
+    {
+      "patient_id": "SYN-0142",
+      "as_of": "2025-07-04T22:00:00-04:00",
+      "level": "act",
+      "score": 0.72,
+      "factors": [
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 7.6× usual for 11101 this hour",
+          "contribution": 0.46,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Crisis visit in the last 30 days",
+          "contribution": 0.21,
+          "source": "Synthetic DOHMH services"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "Contact details last updated 2024-07-02",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    },
+    {
+      "patient_id": "SYN-0217",
+      "as_of": "2025-07-04T22:00:00-04:00",
+      "level": "watch",
+      "score": 0.47,
+      "factors": [
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 4.4× usual for 11106 this hour",
+          "contribution": 0.24,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Supported housing: home may lack air conditioning",
+          "contribution": 0.1,
+          "source": "Synthetic DOHMH roster"
+        },
+        {
+          "trigger": "patient",
+          "label": "Age 65+",
+          "contribution": 0.08,
+          "source": "Synthetic DOHMH roster"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    },
+    {
+      "patient_id": "SYN-0388",
+      "as_of": "2025-07-04T22:00:00-04:00",
+      "level": "act",
+      "score": 0.74,
+      "factors": [
+        {
+          "trigger": "heat",
+          "label": "Heat index 88°F; this ZIP ranks 5 of 5 on heat vulnerability",
+          "contribution": 0.41,
+          "source": "Open-Meteo + NYC HVI"
+        },
+        {
+          "trigger": "noise",
+          "label": "Fireworks and loud-noise complaints 3.6× usual for 10456 this hour",
+          "contribution": 0.18,
+          "source": "NYC 311"
+        },
+        {
+          "trigger": "patient",
+          "label": "Supported housing: home may lack air conditioning",
+          "contribution": 0.1,
+          "source": "Synthetic DOHMH roster"
+        }
+      ],
+      "uncertainty": {
+        "confidence": "medium",
+        "caveats": [
+          "Noise is estimated from 311 complaints, which lag and depend on who reports",
+          "Exposure is estimated for the whole ZIP, not the person's block",
+          "No pharmacy data: medication effects are not assessed"
+        ]
+      }
+    }
+  ]
+}

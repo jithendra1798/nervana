@@ -1,0 +1,28 @@
+{
+  "id": "demo",
+  "label": "July 4th evening (illustrative fixture)",
+  "window_start": "2025-07-04T06:00:00-04:00",
+  "window_end": "2025-07-05T05:00:00-04:00",
+  "default_as_of": "2025-07-04T21:00:00-04:00",
+  "step": "PT1H",
+  "geo_level": "MODZCTA",
+  "is_fixture": true,
+  "sources": [
+    {
+      "name": "NYC 311 noise complaints",
+      "url": "https://data.cityofnewyork.us/Social-Services/noise/igcr-kbaw"
+    },
+    {
+      "name": "Open-Meteo historical weather",
+      "url": "https://open-meteo.com/en/docs/historical-weather-api"
+    },
+    {
+      "name": "Open-Meteo air quality",
+      "url": "https://open-meteo.com/en/docs/air-quality-api"
+    },
+    {
+      "name": "NYC Heat Vulnerability Index",
+      "url": "https://data.cityofnewyork.us/Health/Heat-Vulnerability-Index-Rankings/4mhf-duep"
+    }
+  ]
+}

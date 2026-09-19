@@ -1,0 +1,20 @@
+{
+  "alert_id": "AL-SYN-0142-2025070421",
+  "patient_id": "SYN-0142",
+  "patient_name": "R.M.",
+  "age": 34,
+  "zip": "11101",
+  "program": "ACT",
+  "care_team": "LIC ACT Team 2",
+  "level": "act",
+  "score": 0.72,
+  "top_factor": "Fireworks and loud-noise complaints 7.6× usual for 11101 this hour",
+  "confidence": "medium",
+  "status": "outreach",
+  "action": {
+    "action": "outreach",
+    "reason": null,
+    "clinician": "Dr. A. Rivera",
+    "at": "2025-07-04T21:06:00-04:00"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "patient_id": "SYN-0142",
+  "items": [
+    {
+      "text": "Tonight: stay indoors with headphones on until 11pm. If the grounding exercise doesn't help within 10 minutes, text the ACT team line.",
+      "author": "Dr. A. Rivera",
+      "source": "care_team",
+      "created_at": "2025-07-04T21:25:00-04:00"
+    },
+    {
+      "text": "Wear earplugs or noise-cancelling headphones during the fireworks window (about 9 to 11pm).",
+      "author": null,
+      "source": "standard_tips",
+      "created_at": null
+    },
+    {
+      "text": "Grounding: breathe in for 1 and out for 1, then 2 and 2, up to 5 or 6.",
+      "author": null,
+      "source": "standard_tips",
+      "created_at": null
+    },
+    {
+      "text": "Drink water every hour; use AC or a cooling center if home is hot.",
+      "author": null,
+      "source": "standard_tips",
+      "created_at": null
+    }
+  ]
+}

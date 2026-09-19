@@ -1,0 +1,51 @@
+{
+  "as_of": "2025-07-04T21:00:00-04:00",
+  "count": 3,
+  "alerts": [
+    {
+      "alert_id": "AL-SYN-0388-2025070421",
+      "patient_id": "SYN-0388",
+      "patient_name": "A.T.",
+      "age": 45,
+      "zip": "10456",
+      "program": "Supported housing",
+      "care_team": "Bronx Supported Housing",
+      "level": "act",
+      "score": 0.74,
+      "top_factor": "Heat index 88°F; this ZIP ranks 5 of 5 on heat vulnerability",
+      "confidence": "medium",
+      "status": "new",
+      "action": null
+    },
+    {
+      "alert_id": "AL-SYN-0142-2025070421",
+      "patient_id": "SYN-0142",
+      "patient_name": "R.M.",
+      "age": 34,
+      "zip": "11101",
+      "program": "ACT",
+      "care_team": "LIC ACT Team 2",
+      "level": "act",
+      "score": 0.72,
+      "top_factor": "Fireworks and loud-noise complaints 7.6× usual for 11101 this hour",
+      "confidence": "medium",
+      "status": "new",
+      "action": null
+    },
+    {
+      "alert_id": "AL-SYN-0217-2025070421",
+      "patient_id": "SYN-0217",
+      "patient_name": "D.K.",
+      "age": 67,
+      "zip": "11106",
+      "program": "Outpatient clinic",
+      "care_team": "Astoria Clinic",
+      "level": "watch",
+      "score": 0.47,
+      "top_factor": "Fireworks and loud-noise complaints 4.4× usual for 11106 this hour",
+      "confidence": "medium",
+      "status": "new",
+      "action": null
+    }
+  ]
+}

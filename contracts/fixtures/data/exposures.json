@@ -1,0 +1,1682 @@
+[
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T06:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T07:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T08:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.06,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T09:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.06,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T10:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T11:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.1,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T12:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.4,
+    "composite": 0.12,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 43,
+      "heat_index_f": 90
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T13:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 44,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T14:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 46,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T15:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.56,
+    "composite": 0.17,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 47,
+      "heat_index_f": 94
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T16:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 48,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T17:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 47,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T18:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.4,
+    "composite": 0.12,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 46,
+      "heat_index_f": 90
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T19:00:00-04:00",
+    "noise": 0.02,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.2,
+      "us_aqi": 44,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T20:00:00-04:00",
+    "noise": 0.23,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.19,
+    "raw": {
+      "noise_complaints": 12,
+      "noise_baseline": 4.2,
+      "us_aqi": 43,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T21:00:00-04:00",
+    "noise": 0.83,
+    "air": 0.18,
+    "heat": 0.2,
+    "composite": 0.51,
+    "raw": {
+      "noise_complaints": 32,
+      "noise_baseline": 4.2,
+      "us_aqi": 68,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T22:00:00-04:00",
+    "noise": 0.83,
+    "air": 0.18,
+    "heat": 0.2,
+    "composite": 0.51,
+    "raw": {
+      "noise_complaints": 32,
+      "noise_baseline": 4.2,
+      "us_aqi": 68,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-04T23:00:00-04:00",
+    "noise": 0.23,
+    "air": 0.18,
+    "heat": 0.16,
+    "composite": 0.2,
+    "raw": {
+      "noise_complaints": 12,
+      "noise_baseline": 4.2,
+      "us_aqi": 68,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T00:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T01:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T02:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T03:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T04:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11101",
+    "hour": "2025-07-05T05:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.2,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T06:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T07:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T08:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T09:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T10:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.06,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T11:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T12:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 43,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T13:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 44,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T14:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.15,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 46,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T15:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 47,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T16:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 48,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T17:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 47,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T18:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 46,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T19:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.09,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 44,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T20:00:00-04:00",
+    "noise": 0.12,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.12,
+    "raw": {
+      "noise_complaints": 7,
+      "noise_baseline": 3.6,
+      "us_aqi": 43,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T21:00:00-04:00",
+    "noise": 0.43,
+    "air": 0.18,
+    "heat": 0.16,
+    "composite": 0.3,
+    "raw": {
+      "noise_complaints": 16,
+      "noise_baseline": 3.6,
+      "us_aqi": 68,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T22:00:00-04:00",
+    "noise": 0.43,
+    "air": 0.18,
+    "heat": 0.16,
+    "composite": 0.3,
+    "raw": {
+      "noise_complaints": 16,
+      "noise_baseline": 3.6,
+      "us_aqi": 68,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-04T23:00:00-04:00",
+    "noise": 0.12,
+    "air": 0.18,
+    "heat": 0.12,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 7,
+      "noise_baseline": 3.6,
+      "us_aqi": 68,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T00:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T01:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T02:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T03:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T04:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11106",
+    "hour": "2025-07-05T05:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 3.6,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T06:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T07:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T08:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T09:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.16,
+    "composite": 0.05,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T10:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.06,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T11:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T12:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 43,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T13:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 44,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T14:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 46,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T15:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 47,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T16:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 48,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T17:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 47,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T18:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 46,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T19:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 44,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T20:00:00-04:00",
+    "noise": 0.05,
+    "air": 0,
+    "heat": 0.2,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 2.1,
+      "us_aqi": 43,
+      "heat_index_f": 85
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T21:00:00-04:00",
+    "noise": 0.23,
+    "air": 0.18,
+    "heat": 0.16,
+    "composite": 0.2,
+    "raw": {
+      "noise_complaints": 6,
+      "noise_baseline": 2.1,
+      "us_aqi": 68,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T22:00:00-04:00",
+    "noise": 0.23,
+    "air": 0.18,
+    "heat": 0.16,
+    "composite": 0.2,
+    "raw": {
+      "noise_complaints": 6,
+      "noise_baseline": 2.1,
+      "us_aqi": 68,
+      "heat_index_f": 84
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-04T23:00:00-04:00",
+    "noise": 0.05,
+    "air": 0.18,
+    "heat": 0.12,
+    "composite": 0.1,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 2.1,
+      "us_aqi": 68,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T00:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T01:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T02:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T03:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 2,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T04:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "11104",
+    "hour": "2025-07-05T05:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.12,
+    "composite": 0.04,
+    "raw": {
+      "noise_complaints": 1,
+      "noise_baseline": 2.1,
+      "us_aqi": 42,
+      "heat_index_f": 83
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T06:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T07:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T08:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.1,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T09:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.1,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T10:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.11,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T11:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T12:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 43,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T13:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.6,
+    "composite": 0.18,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 5.0,
+      "us_aqi": 44,
+      "heat_index_f": 95
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T14:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.64,
+    "composite": 0.19,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 46,
+      "heat_index_f": 96
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T15:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.68,
+    "composite": 0.2,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 47,
+      "heat_index_f": 97
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T16:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.64,
+    "composite": 0.19,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 5.0,
+      "us_aqi": 48,
+      "heat_index_f": 96
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T17:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.6,
+    "composite": 0.18,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 47,
+      "heat_index_f": 95
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T18:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.52,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 46,
+      "heat_index_f": 93
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T19:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.44,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 44,
+      "heat_index_f": 91
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T20:00:00-04:00",
+    "noise": 0.08,
+    "air": 0,
+    "heat": 0.36,
+    "composite": 0.15,
+    "raw": {
+      "noise_complaints": 8,
+      "noise_baseline": 5.0,
+      "us_aqi": 43,
+      "heat_index_f": 89
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T21:00:00-04:00",
+    "noise": 0.33,
+    "air": 0.18,
+    "heat": 0.32,
+    "composite": 0.3,
+    "raw": {
+      "noise_complaints": 18,
+      "noise_baseline": 5.0,
+      "us_aqi": 68,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T22:00:00-04:00",
+    "noise": 0.33,
+    "air": 0.18,
+    "heat": 0.32,
+    "composite": 0.3,
+    "raw": {
+      "noise_complaints": 18,
+      "noise_baseline": 5.0,
+      "us_aqi": 68,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-04T23:00:00-04:00",
+    "noise": 0.08,
+    "air": 0.18,
+    "heat": 0.28,
+    "composite": 0.16,
+    "raw": {
+      "noise_complaints": 8,
+      "noise_baseline": 5.0,
+      "us_aqi": 68,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T00:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T01:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T02:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T03:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T04:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10456",
+    "hour": "2025-07-05T05:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 5.0,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T06:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T07:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T08:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.09,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T09:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.28,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T10:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.1,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T11:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.4,
+    "composite": 0.12,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 90
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T12:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 43,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T13:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.56,
+    "composite": 0.17,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 44,
+      "heat_index_f": 94
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T14:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.6,
+    "composite": 0.18,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 46,
+      "heat_index_f": 95
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T15:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.64,
+    "composite": 0.19,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 47,
+      "heat_index_f": 96
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T16:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.6,
+    "composite": 0.18,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 48,
+      "heat_index_f": 95
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T17:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.56,
+    "composite": 0.17,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 47,
+      "heat_index_f": 94
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T18:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.48,
+    "composite": 0.15,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 46,
+      "heat_index_f": 92
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T19:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.4,
+    "composite": 0.12,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 44,
+      "heat_index_f": 90
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T20:00:00-04:00",
+    "noise": 0.06,
+    "air": 0,
+    "heat": 0.32,
+    "composite": 0.13,
+    "raw": {
+      "noise_complaints": 7,
+      "noise_baseline": 4.8,
+      "us_aqi": 43,
+      "heat_index_f": 88
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T21:00:00-04:00",
+    "noise": 0.27,
+    "air": 0.18,
+    "heat": 0.28,
+    "composite": 0.26,
+    "raw": {
+      "noise_complaints": 15,
+      "noise_baseline": 4.8,
+      "us_aqi": 68,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T22:00:00-04:00",
+    "noise": 0.27,
+    "air": 0.18,
+    "heat": 0.28,
+    "composite": 0.26,
+    "raw": {
+      "noise_complaints": 15,
+      "noise_baseline": 4.8,
+      "us_aqi": 68,
+      "heat_index_f": 87
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-04T23:00:00-04:00",
+    "noise": 0.06,
+    "air": 0.18,
+    "heat": 0.24,
+    "composite": 0.14,
+    "raw": {
+      "noise_complaints": 7,
+      "noise_baseline": 4.8,
+      "us_aqi": 68,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T00:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T01:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T02:00:00-04:00",
+    "noise": 0.01,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.08,
+    "raw": {
+      "noise_complaints": 5,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T03:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 4,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T04:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  },
+  {
+    "zip": "10029",
+    "hour": "2025-07-05T05:00:00-04:00",
+    "noise": 0,
+    "air": 0,
+    "heat": 0.24,
+    "composite": 0.07,
+    "raw": {
+      "noise_complaints": 3,
+      "noise_baseline": 4.8,
+      "us_aqi": 42,
+      "heat_index_f": 86
+    }
+  }
+]
