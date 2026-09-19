@@ -2,6 +2,19 @@
 
 As of Sat 19 Sep 2026, 16:15. Code freeze Sun 12:00, submission deadline 12:30.
 
+## Status, Sat 19 Sep 18:10
+
+All four pieces are built and talking to each other on real July 4 2023 data — see the [demo walkthrough](DEMO.md).
+
+| Piece | State |
+| --- | --- |
+| `data/` | Pipelines pull 311, EPA, Open-Meteo, NOAA and HVI; the PTSD score runs for 150 synthetic clients across 178 ZIPs × 24 hours. Research: [RESEARCH.md](../data/RESEARCH.md). |
+| `backend/` | FastAPI serves the pipeline output, the clinician workflow, one alert per event, FHIR RiskAssessment and CDS Hooks. |
+| `frontend/` | Inbox, patient detail, map, help requests, client phone view, "Inside the EHR". Runs on the API or on the example data. |
+| Still open | The DOHMH roster (ours is a stand-in), deploying to Render and Vercel, the backup demo video. |
+
+## The original split
+
 Three people work in parallel, each in their own folder. They share only the shapes in `contracts/`, so nobody waits on anybody: everyone builds against the example files there and switches to the real thing when it lands.
 
 | Person | Folder | Builds | Guide |
