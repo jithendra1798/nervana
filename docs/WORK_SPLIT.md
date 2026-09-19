@@ -11,15 +11,19 @@ About 6.75 build hours are left. The backend scope below is cut to fit that.
 
 ## One repo, Lovable included
 
-Everything lives in one repo, `jithendra1798/nervana`, and Lovable works in it directly. Lovable can't import an existing repo. It can only create a new repo and sync it both ways, and the sync survives a rename ([Lovable GitHub docs](https://docs.lovable.dev/integrations/github)). So Lovable creates the repo, we move this repo's contents into it, and it takes the `nervana` name.
+Frontend and backend share one repo, and Lovable works in it directly. Giving P1 access to `jithendra1798/nervana` isn't enough, because Lovable can't import an existing repo. It only syncs with a repo it creates itself, under a GitHub account or org that P1 controls ([Lovable GitHub docs](https://docs.lovable.dev/integrations/github)).
 
-**Setup (about 20 minutes, do it now):**
+So we create a shared GitHub org, let Lovable create the repo there, and move this repo's contents into it. Both of us own it, and it never has to be transferred, which would break Lovable's sync.
 
-1. Jithendra creates a Lovable project named `nervana`, then clicks **Share** and invites P1 as an editor. P1's prompts use Jithendra's workspace credits, so check the plan has enough.
-2. In the project's GitHub settings, connect the `jithendra1798` account. Lovable creates a new repo.
-3. Merge this repo into Lovable's repo, resolve `README.md` and `.gitignore`, then push to its `main`.
-4. On GitHub, rename the old `nervana` repo to `nervana-old` and archive it. Then rename Lovable's repo to `nervana`.
-5. `git pull`. The `origin` URL stays the same.
+**Setup (about 15 minutes, do it now):**
+
+1. Jithendra creates a free GitHub org (for example `nervana-hq`) and invites P1 as an owner, so P1 can install Lovable's GitHub app on it.
+2. P1 creates the Lovable project `nervana`, connects GitHub, and picks the org. Lovable creates the repo there.
+3. Jithendra merges this repo into the new one, resolves `README.md` and `.gitignore`, and pushes to its `main`. Claude Code can do this step.
+4. If Lovable named the repo something else, rename it to `nervana`; the sync keeps working. Archive `jithendra1798/nervana`.
+5. Jithendra points local `origin` at the new repo.
+
+A faster option that's harder to undo: P1 lets Lovable create the repo on their personal account and adds Jithendra as a collaborator with write access. It works the same way, but the repo stays on P1's account for good.
 
 **Rules for sharing a repo with Lovable:**
 
@@ -59,7 +63,7 @@ The checkpoint that matters most today is a public API by 19:00, so the Lovable 
 
 | When | Milestone | Owner |
 | --- | --- | --- |
-| Sat 15:30 | Lovable connected, repo merged and renamed (setup steps 1–5) | Jithendra |
+| Sat 15:30 | Shared org created, Lovable repo created, this repo merged in (setup steps 1–5) | Jithendra + P1 |
 | Sat 15:45 | API spec + sample responses committed to `backend/contracts/` | Jithendra |
 | Sat 16:15 | Synthetic data readout in Slack: PTSD patient count, veteran field yes/no, demo patient, replay day | Jithendra |
 | Sat 18:00 | PTSD scoring runs on the replay day | Jithendra |
