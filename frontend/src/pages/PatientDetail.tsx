@@ -5,6 +5,7 @@ import { FactorBars } from "../components/FactorBars";
 import { Icon } from "../components/Icon";
 import { ErrorBox, Loading } from "../components/States";
 import { TimelineChart } from "../components/TimelineChart";
+import { VitalsCard } from "../components/VitalsCard";
 import { api } from "../lib/api";
 import { useAsOf } from "../lib/asOf";
 import { CLINICIAN, DISMISS_REASONS } from "../lib/demo";
@@ -17,6 +18,7 @@ export function PatientDetail() {
   const risk = useApi(() => (asOf ? api.patientRisk(id, asOf) : Promise.resolve(undefined)), [id, asOf]);
   const alerts = useApi(() => (asOf ? api.alerts(asOf) : Promise.resolve(undefined)), [asOf]);
   const plan = useApi(() => api.plan(id), [id, asOf], 5000);
+  const vitals = useApi(() => (asOf ? api.vitals(id, asOf) : Promise.resolve(undefined)), [id, asOf]);
   const alert = alerts.data?.alerts.find((a) => a.patient_id === id);
 
   const [dismissing, setDismissing] = useState(false);
@@ -85,6 +87,8 @@ export function PatientDetail() {
             <div className="card-head"><h2>Conditions in ZIP {p.zip}</h2><span className="small muted">through {fmtHour(r.as_of)} · 0–100 severity</span></div>
             <TimelineChart points={r.timeline} asOf={r.as_of} />
           </section>
+
+          {vitals.data && <VitalsCard vitals={vitals.data} />}
         </div>
 
         <div>

@@ -1,4 +1,4 @@
-"""Nervana API — climate-triggered PTSD alerts for care teams.
+"""Nervana API: climate-triggered PTSD alerts for care teams.
 
 Shapes are defined in contracts/README.md. The data comes from data/out/<scenario>/,
 written by the pipelines in data/pipelines.
@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from . import fhir, personalize, recommend, routing, workflow
+from . import fhir, personalize, recommend, routing, vitals, workflow
 from .store import get_store
 
 app = FastAPI(title="Nervana API", version="0.1.0",
@@ -218,6 +218,7 @@ def create_escalation(body: EscalationBody, as_of: str | None = None) -> dict:
             "exposures_24h": payload["timeline"],
             "tips_shown": [t["text"] for t in payload["tips"]],
             "missing_data": missing,
+            "vitals": vitals.summary(p, hour),
         },
         "response": None,
     }
@@ -268,6 +269,16 @@ def put_profile(patient_id: str, body: ProfileBody) -> dict:
         raise HTTPException(404, f"No client {patient_id}")
     saved = workflow.save_profile(patient_id, body.model_dump())
     return {"patient_id": patient_id, "profile": saved, "options": personalize.PROFILE_OPTIONS}
+
+
+@app.get("/v1/patients/{patient_id}/vitals")
+def patient_vitals(patient_id: str, as_of: str | None = None) -> dict:
+    """Simulated wearable signal for this client, and how it tracks each trigger."""
+    s = get_store()
+    p = s.patient(patient_id)
+    if not p:
+        raise HTTPException(404, f"No client {patient_id}")
+    return vitals.summary(p, s.resolve(as_of))
 
 
 @app.get("/v1/audit")

@@ -123,7 +123,7 @@ export function Inbox() {
                       <div className="small muted">{a.care_team} · ZIP {a.zip}</div>
                     </td>
                     <td style={{ maxWidth: 400 }}>{a.top_factor}</td>
-                    <td className="small muted">{a.flagged_since ? fmtTick(a.flagged_since) : "—"}</td>
+                    <td className="small muted">{a.flagged_since ? fmtTick(a.flagged_since) : "not set"}</td>
                     <td><ConfidenceBadge confidence={a.confidence} /></td>
                     <td><StatusBadge status={a.status} /></td>
                   </tr>

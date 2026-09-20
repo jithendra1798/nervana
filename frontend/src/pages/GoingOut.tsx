@@ -41,7 +41,7 @@ function Recentre({ point, zoom = 14 }: { point: [number, number] | undefined; z
 
 /**
  * "I have to go somewhere." Shows what the walk runs through right now, whether
- * a calmer way around exists, and — usually more useful — whether waiting an
+ * a calmer way around exists, and, more usefully, whether waiting an
  * hour or two helps.
  */
 export function GoingOut() {
@@ -121,7 +121,7 @@ export function GoingOut() {
         <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
         <h1 style={{ marginTop: 10 }}>Going out?</h1>
         <p className="subtle small" style={{ marginTop: 6 }}>
-          Search where you're heading, or tap the map. We'll show what the walk runs through right now — and whether waiting helps.
+          Search where you're heading, or tap the map. We'll show what the walk runs through right now, and whether waiting helps.
         </p>
 
         <div className="stack" style={{ marginTop: 14 }}>
@@ -137,7 +137,7 @@ export function GoingOut() {
 
         <MapFrame height={280} label="Your walk">
           <MapContainer center={from ?? [40.745, -73.95]} zoom={12} style={{ height: "100%", width: "100%" }}>
-            <TileLayer key={resolved} url={c.tiles} attribution="Tiles &copy; Esri" maxZoom={16} />
+            <TileLayer key={resolved} url={c.tiles} attribution="Tiles: Esri" maxZoom={16} />
             <PickDestination onPick={(p) => { setDest(p); setDestLabel(undefined); }} />
             <Recentre point={dest ?? from} zoom={dest ? 13 : 14} />
             <ResizeWatcher trigger={`${dest?.join(",") ?? ""}-${answer?.as_of ?? ""}`} />

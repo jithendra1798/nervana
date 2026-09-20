@@ -1,7 +1,7 @@
 """What to do about a flag: the care team's own plan first, then standard tips.
 
 Adding another source later (an AI draft a clinician approves, a program protocol)
-means adding one function to PROVIDERS — nothing else changes.
+means adding one function to PROVIDERS, nothing else changes.
 """
 from __future__ import annotations
 

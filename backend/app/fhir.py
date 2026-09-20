@@ -94,7 +94,7 @@ def patient_view(req: HookRequest) -> dict:
     top = recommend.top_trigger(p["factors"])
     return {"cards": [{
         "uuid": f"nervana-{patient_id}-{p['as_of']}",
-        "summary": f"{p['patient']['name']}: {p['level'].upper()} — {top} risk nearby (score {p['score']:.2f})",
+        "summary": f"{p['patient']['name']}: {p['level'].upper()}, {top} risk nearby (score {p['score']:.2f})",
         "indicator": INDICATOR[p["level"]],
         "detail": detail,
         "source": {"label": "Nervana", "url": "https://github.com/jithendra1798/nervana"},

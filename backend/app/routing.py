@@ -243,7 +243,7 @@ def calmer_route(
             "advice": (
                 f"Quieter if you wait {wait_hours} hour{'s' if wait_hours != 1 else ''}."
                 if calmest and now_mean - calmest["mean"] >= 0.15
-                else "It gets louder from here tonight — better to go now than later." if rising
+                else "It gets louder from here tonight, so better to go now than later." if rising
                 else "This is about as calm as the next few hours get."
             ),
         },

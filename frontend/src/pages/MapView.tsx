@@ -147,7 +147,7 @@ export function MapView() {
       <div className="map-layout">
         <MapFrame height={620} label="Conditions by ZIP">
           <MapContainer center={[40.73, -73.93]} zoom={11} minZoom={10} scrollWheelZoom style={{ height: "100%", width: "100%" }}>
-            <TileLayer key={resolved} url={c.tiles} attribution="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors" maxZoom={16} />
+            <TileLayer key={resolved} url={c.tiles} attribution="Tiles: Esri, HERE, Garmin, OpenStreetMap contributors" maxZoom={16} />
             {geo && map.data && (
               <GeoJSON key={`${map.data.as_of}-${trigger}-${resolved}-${flagged.size}-${focus ?? ""}`} data={geo}
                 style={style as never} onEachFeature={onEach as never} />

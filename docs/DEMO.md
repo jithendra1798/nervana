@@ -12,11 +12,13 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 3 | Inbox | Open **Inbox** | "100 clients with PTSD are flagged citywide, 23 to act on. They sit across 52 care teams, so one team sees a handful." |
 | 4 | Inbox | Pick **LIC ACT Team 2** in the care-team filter | "This team has one person tonight: R.M." |
 | 5 | Patient detail | Click R.M. | "Why, not just a score: 6 complaints in their ZIP, 3.2× usual; fine particles at 128; and a crisis visit in the last 30 days. Each with its weight and its source." |
+| 5b | Patient detail | Scroll to **Vitals and conditions** | "Their heart rate is 87 against a usual 73, variability is down, and sleep is restless. It tracks noise today at r = 0.77. This wearable feed is simulated and labelled as such: the hackathon data has no wearable, and in production the client connects their own." |
 | 6 | Patient detail | Point at the confidence badge and caveats | "The alert says how sure it is. Low, because their contact details are over a year old and the exposure is ZIP-level, not their block. And it says what we don't have: no pharmacy data." |
 | 7 | Patient detail | Click **Log outreach** | "One alert for the whole event, so they aren't pinged again at 10, 11 and midnight." |
 | 8 | Client phone | On the right window, tap **I need help** | "This is the client's side. Crisis lines come first — 988, press 1 for veterans — before anything else happens." |
 | 9 | Client phone | Tick consent, add a note, send | "Nothing reaches the care team without the client agreeing to it." |
 | 10 | Help requests | Back on the left, open **Help requests** | "The team gets a bundle, not a ping: what they pressed, why they may be struggling, the last 24 hours nearby, the tips they already saw, and what we don't know." |
+| 10b | Help requests | Point at the vitals inside the bundle | "When someone reaches out, the team sees the body and the surroundings on the same hours, not just a message." |
 | 11 | Help requests | Write a reply and send | "The clinician writes the plan. The system never does." |
 | 12 | Client phone | Show the plan updating | "Their doctor's words, at the top of their plan, above the standard tips." |
 | 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
@@ -45,4 +47,5 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 
 - The scoring weights are assumptions, not fitted values. Nothing here is validated against outcomes.
 - Our own check against NYC EMS crisis calls was inconclusive, and we say so.
+- The wearable vitals are simulated, and every screen says so.
 - The client roster is synthetic, a stand-in until the DOHMH dataset arrives, and the pipeline reads it through one function.

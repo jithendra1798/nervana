@@ -2,7 +2,7 @@
 
 The intake form (see `PROFILE_OPTIONS`) is short on purpose: what sets you off,
 what helps, what your home is like, who you call. Everything here is a direct
-read of those answers — nothing is inferred about a person from their diagnosis.
+read of those answers, and nothing is inferred about a person from their diagnosis.
 
 Order of what a client sees: their care team's plan, then advice built from their
 own answers, then the standard tips.
@@ -24,15 +24,15 @@ TRIGGER_MATCH = {
     "heat": {"Heat"},
 }
 HELP_TEXT = {
-    "Noise-cancelling headphones": "Put your noise-cancelling headphones on before it gets loud — you told us they help.",
-    "Earplugs": "Have your earplugs within reach tonight — you told us they help.",
+    "Noise-cancelling headphones": "Put your noise-cancelling headphones on before it gets loud. You told us they help.",
+    "Earplugs": "Have your earplugs within reach tonight. You told us they help.",
     "Grounding breathing": "Use your grounding breathing: in for 1 and out for 1, then 2 and 2, up to 5 or 6.",
-    "Calling someone": "Call someone you trust and stay on the line for a while — you told us that helps.",
+    "Calling someone": "Call someone you trust and stay on the line for a while. You told us that helps.",
     "Music or TV": "Put music or the TV on to cover the noise outside.",
     "A walk": "A short walk helps you, but keep it away from the loudest streets tonight.",
     "Cold water": "Cold water on your wrists and face is on your list of things that help.",
     "A quiet room": "Move to your quiet room and keep the windows shut.",
-    "My dog": "Keep your dog close tonight — you told us that helps.",
+    "My dog": "Keep your dog close tonight. You told us that helps.",
 }
 HELP_TRIGGERS = {
     "A walk": {"noise", "air"},          # not in the heat
@@ -101,7 +101,7 @@ def next_step_suffix(profile: dict | None) -> str:
         bits.append(f"reaching {profile['support_person']}")
     if (profile.get("home") or {}).get("air_conditioning") is False:
         return " They have no air conditioning at home, so offer a cooling center."
-    return f" They tell us {' and '.join(bits)} help — check both are possible." if bits else ""
+    return f" They tell us {' and '.join(bits)} help, so check both are possible." if bits else ""
 
 
 def clinician_note(profile: dict | None, factors: list[dict]) -> str | None:

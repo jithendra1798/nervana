@@ -5,6 +5,7 @@ import { FactorBars } from "../components/FactorBars";
 import { Icon } from "../components/Icon";
 import { Empty, ErrorBox, Loading } from "../components/States";
 import { TimelineChart } from "../components/TimelineChart";
+import { VitalsCard } from "../components/VitalsCard";
 import { api } from "../lib/api";
 import { CLINICIAN } from "../lib/demo";
 import { fmtDateTime } from "../lib/format";
@@ -128,10 +129,14 @@ function Detail({ esc, onDone }: { esc: Escalation; onDone: () => void }) {
         <FactorBars factors={esc.packet.factors} />
       </section>
 
-      <section className="card">
-        <div className="card-head"><h2>Conditions near them before the request</h2></div>
-        <TimelineChart points={esc.packet.exposures_24h} height={200} />
-      </section>
+      {esc.packet.vitals ? (
+        <VitalsCard vitals={esc.packet.vitals} compact />
+      ) : (
+        <section className="card">
+          <div className="card-head"><h2>Conditions near them before the request</h2></div>
+          <TimelineChart points={esc.packet.exposures_24h} height={200} />
+        </section>
+      )}
 
       <section className="card">
         <div className="grid-2" style={{ gridTemplateColumns: "1fr 1fr" }}>

@@ -8,7 +8,7 @@ import { fmtDateTime, fmtHour } from "../lib/format";
 import { useApi } from "../lib/hooks";
 import type { Escalation, PatientRisk } from "../lib/types";
 
-/** /me — pick which client's phone to preview (demo only). */
+/** /me: pick which client's phone to preview (demo only). */
 export function PatientPicker() {
   const { asOf } = useAsOf();
   const { data, error } = useApi(() => (asOf ? api.alerts(asOf) : Promise.resolve(undefined)), [asOf]);
@@ -35,7 +35,7 @@ export function PatientPicker() {
 // Clients see plain language, never the clinician's sentence.
 const PLAIN: Record<string, { act: string; watch: string }> = {
   noise: {
-    act: "It's much louder than usual around you tonight — fireworks and street noise.",
+    act: "It's much louder than usual around you tonight: fireworks and street noise.",
     watch: "It's louder than usual around you tonight.",
   },
   heat: {
