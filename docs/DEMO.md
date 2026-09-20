@@ -25,6 +25,7 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
 | 12c | Client phone | In **Going out**, tap **Use my location**, search a destination, **Check the walk** | "It starts from where they actually are, shows what the walk runs through, and answers the question the data supports: when to go." |
 | 12d | Patient detail | Click **Report** | "One page for the chart, the case conference or the client's own doctor: why, how sure, what their body and surroundings did, what the team did, and the sources. It prints or saves as a PDF." |
+| 12e | Help requests | Click **Run watcher**, open the new request | "Nobody pressed anything here. The watcher opened this by itself, because the score, the wearable and the conditions were all extreme at once. It notifies the care team, then pages the on-call clinician, then calls 988, which is staffed by counsellors. **It never dials 911**: on a false positive that sends police to someone in a mental-health crisis. A reply or the client's own 'I'm OK' stops it, and every rung is mocked and logged." |
 | 13 | Inside the EHR | Open **Inside the EHR** | "None of this needs a new app. The same alert is a CDS Hooks card when a chart opens, and a FHIR RiskAssessment in the record. Every action and consent is logged." |
 
 ## Numbers worth quoting
@@ -54,4 +55,5 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 - The scoring weights are assumptions, not fitted values. Nothing here is validated against outcomes.
 - Our own check against NYC EMS crisis calls was inconclusive, and we say so.
 - The wearable vitals are simulated, and every screen says so.
+- The automatic calls are mocked. Nothing is dialled, and the design stops short of emergency services on purpose.
 - The client roster is synthetic, a stand-in until the DOHMH dataset arrives, and the pipeline reads it through one function.

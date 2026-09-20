@@ -65,6 +65,7 @@ export function PatientApp() {
   const [open, setOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const speech = useSpeech();
+  const autos = useApi(() => api.escalations("open"), [], 4000);
 
   if (risk.error) return <div className="page"><ErrorBox error={risk.error} /></div>;
   if (!risk.data) return <div className="page"><Loading /></div>;
@@ -77,6 +78,7 @@ export function PatientApp() {
     standard_tips: "General",
   };
   const yours = r.tips.find((t) => t.source === "your_profile");
+  const auto = autos.data?.escalations.find((e) => e.patient_id === r.patient.id && e.trigger === "threshold");
   // Keep the screen short: the team's words, a few of their own, one general tip.
   const CAPS: Record<string, number> = { care_team: 2, your_profile: 3, standard_tips: 1 };
   const groups = (["care_team", "your_profile", "standard_tips"] as const)
@@ -101,6 +103,19 @@ export function PatientApp() {
           <p style={{ marginTop: 6 }}>{h.body}</p>
           {yours && <p style={{ marginTop: 8, fontWeight: 550 }}>{yours.text}</p>}
         </div>
+
+        {auto && (
+          <div className="notice" style={{ borderLeft: "3px solid var(--critical)", marginBottom: 12 }}>
+            <b>We let {r.patient.care_team} know</b>
+            <div className="small subtle" style={{ marginTop: 4 }}>
+              Your heart rate and the noise around you were both unusual. Someone will reach out.
+            </div>
+            <button className="btn" style={{ marginTop: 10 }}
+              onClick={async () => { await api.cancelEscalation(auto.escalation_id, "client"); autos.reload(); }}>
+              I'm OK, stop this
+            </button>
+          </div>
+        )}
 
         <Link to={`/me/${r.patient.id}/going-out`} className="btn" style={{ width: "100%", marginBottom: 12 }}>
           <Icon name="send" /> Going out

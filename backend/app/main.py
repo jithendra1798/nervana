@@ -13,7 +13,7 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-from . import fhir, personalize, recommend, routing, vitals, workflow
+from . import fhir, ladder, personalize, recommend, routing, vitals, workflow
 from .store import get_store
 
 app = FastAPI(title="Nervana API", version="0.1.0",
@@ -226,8 +226,83 @@ def create_escalation(body: EscalationBody, as_of: str | None = None) -> dict:
 
 
 @app.get("/v1/escalations")
-def list_escalations(status: Literal["open", "answered"] | None = None) -> dict:
-    return {"escalations": workflow.escalations(status)}
+def list_escalations(status: Literal["open", "answered", "cancelled"] | None = None) -> dict:
+    rows = [ladder.advance(e) for e in workflow.escalations()]
+    if status:
+        rows = [e for e in rows if e["status"] == status]
+    return {"escalations": rows, "ladder": {"stages": ladder.STAGES, "seconds_per_stage": ladder.STAGE_SECONDS, "note": ladder.FINAL_NOTE}}
+
+
+class CancelBody(BaseModel):
+    by: str = "client"
+
+
+@app.post("/v1/escalations/{escalation_id}/cancel")
+def cancel_escalation(escalation_id: str, body: CancelBody) -> dict:
+    """The client or a clinician stops the ladder."""
+    esc = workflow.escalation(escalation_id)
+    if not esc:
+        raise HTTPException(404, f"No help request {escalation_id}")
+    return ladder.cancel(esc, body.by)
+
+
+@app.post("/v1/watch/run")
+def run_watcher(as_of: str | None = None) -> dict:
+    """Opens a help request by itself when someone's situation looks unusual.
+
+    Unusual means all three at once: a top-of-range score, a wearable well above
+    that person's own baseline, and extreme conditions where they are.
+    """
+    s = get_store()
+    hour = s.resolve(as_of)
+    opened, already, qualified = [], 0, 0
+    for row in s.risk_at(hour):
+        if len(opened) >= ladder.MAX_PER_RUN:
+            break
+        p = s.patient(row["patient_id"])
+        if not p:
+            continue
+        signal = ladder.unusual(p, hour)
+        if not signal:
+            continue
+        qualified += 1
+        if any(e["patient_id"] == p["id"] and e["status"] == "open" for e in workflow.escalations()):
+            already += 1
+            continue
+        # A clinician already acting on this person is a human in the loop; leave them to it.
+        if any(e.get("patient_id") == p["id"] and e["event"] == "alert_action" for e in workflow.audit()):
+            continue
+        payload = _risk_payload(p["id"], hour)
+        esc = {
+            "escalation_id": f"ESC-{len(workflow.escalations()) + 1:04d}",
+            "patient_id": p["id"], "patient_name": p["name"], "care_team": p["care_team"],
+            "trigger": "threshold", "consent": True, "status": "open", "created_at": workflow.now(),
+            "auto": {"reason": "score and wearable both unusual", **signal},
+            "packet": {
+                "summary": (f"Opened automatically: {p['name']} scores {row['score']:.2f} and their heart rate is "
+                            f"{signal['above_baseline']} above their usual. {signal['top_factor']}"),
+                "level": row["level"],
+                "factors": payload["factors"],
+                "exposures_24h": payload["timeline"],
+                "tips_shown": [t["text"] for t in payload["tips"]],
+                "missing_data": ["No pharmacy data", "Wearable is simulated"],
+                "vitals": vitals.summary(p, hour),
+            },
+            "response": None,
+            "calls": [],
+        }
+        workflow.add_escalation(esc)
+        opened.append(ladder.advance(esc))
+    return {
+        "as_of": hour.isoformat(),
+        "opened": len(opened),
+        "already_open": already,
+        "met_the_bar": qualified,
+        "bar": {"score": ladder.SCORE_TRIGGER, "heart_rate_above_baseline": ladder.HR_ABOVE_BASELINE,
+                "conditions_at_least": ladder.ENV_EXTREME, "max_per_run": ladder.MAX_PER_RUN},
+        "note": ladder.FINAL_NOTE,
+        "escalations": opened,
+    }
 
 
 class RespondBody(BaseModel):

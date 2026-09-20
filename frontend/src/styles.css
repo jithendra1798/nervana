@@ -264,6 +264,8 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .req + .req { margin-top: 8px; }
 .req[aria-current="true"] { box-shadow: 0 0 0 2px var(--ink); }
 .req:hover { background: var(--hover); }
+.ladder { margin: 0; padding-left: 18px; display: grid; gap: 10px; }
+.ladder li::marker { color: var(--muted); }
 .empty { padding: 36px 18px; text-align: center; color: var(--ink-2); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }

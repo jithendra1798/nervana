@@ -10,7 +10,8 @@ import { api } from "../lib/api";
 import { CLINICIAN } from "../lib/demo";
 import { fmtDateTime } from "../lib/format";
 import { useApi } from "../lib/hooks";
-import type { Escalation } from "../lib/types";
+import { useAsOf } from "../lib/asOf";
+import type { Escalation, LadderInfo } from "../lib/types";
 
 const SUGGESTIONS: Record<string, string> = {
   noise: "Tonight: stay indoors with headphones on until the fireworks end. If the grounding exercise doesn't help within 10 minutes, call the team line and we'll call you back.",
@@ -19,7 +20,9 @@ const SUGGESTIONS: Record<string, string> = {
 };
 
 export function HelpRequests() {
+  const { asOf } = useAsOf();
   const [tab, setTab] = useState<"open" | "answered">("open");
+  const [watching, setWatching] = useState(false);
   const list = useApi(() => api.escalations(tab), [tab], 4000);
   const [selected, setSelected] = useState<string>();
   const items = list.data?.escalations ?? [];
@@ -36,9 +39,15 @@ export function HelpRequests() {
           <h1>Help requests</h1>
           <p className="subtle" style={{ marginTop: 4 }}>Sent by clients from their phone, with their consent. Crisis lines are shown to them first.</p>
         </div>
-        <div className="segmented" role="group" aria-label="Status">
-          <button aria-pressed={tab === "open"} onClick={() => { setTab("open"); setSelected(undefined); }}>Open</button>
-          <button aria-pressed={tab === "answered"} onClick={() => { setTab("answered"); setSelected(undefined); }}>Answered</button>
+        <div className="row">
+          <button className="btn" disabled={watching || !asOf} title="Demo control: looks for anyone unusual this hour"
+            onClick={async () => { setWatching(true); try { await api.runWatcher(asOf!); list.reload(); } finally { setWatching(false); } }}>
+            {watching ? "Checking…" : "Run watcher"}
+          </button>
+          <div className="segmented" role="group" aria-label="Status">
+            <button aria-pressed={tab === "open"} onClick={() => { setTab("open"); setSelected(undefined); }}>Open</button>
+            <button aria-pressed={tab === "answered"} onClick={() => { setTab("answered"); setSelected(undefined); }}>Answered</button>
+          </div>
         </div>
       </div>
       {list.error && <ErrorBox error={list.error} />}
@@ -67,7 +76,7 @@ export function HelpRequests() {
               </button>
             ))}
           </div>
-          <Detail key={current.escalation_id} esc={current} onDone={(answeredId) => {
+          <Detail key={current.escalation_id} esc={current} ladder={list.data?.ladder} onDone={(answeredId) => {
             // Stay with the request the clinician just answered instead of letting it
             // vanish from the Open list.
             if (answeredId) {
@@ -82,7 +91,7 @@ export function HelpRequests() {
   );
 }
 
-function Detail({ esc, onDone }: { esc: Escalation; onDone: (answeredId?: string) => void }) {
+function Detail({ esc, ladder, onDone }: { esc: Escalation; ladder?: LadderInfo; onDone: (answeredId?: string) => void }) {
   const top = esc.packet.factors.find((f) => f.trigger !== "patient")?.trigger ?? "noise";
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -109,8 +118,35 @@ function Detail({ esc, onDone }: { esc: Escalation; onDone: (answeredId?: string
           <Link className="small subtle" to={`/patients/${esc.patient_id}`}>Open record</Link>
         </div>
         <p style={{ fontSize: 16 }}>{esc.packet.summary}</p>
-        <p className="small muted" style={{ marginTop: 6 }}>Received {fmtDateTime(esc.created_at)} · client consented to share</p>
+        <p className="small muted" style={{ marginTop: 6 }}>
+          Received {fmtDateTime(esc.created_at)} · {esc.trigger === "threshold" ? "opened by the watcher" : "client consented to share"}
+        </p>
       </section>
+
+      {esc.calls && esc.calls.length > 0 && (
+        <section className="card">
+          <div className="card-head">
+            <h2>Automatic escalation</h2>
+            <span className="badge status">Mock, no calls placed</span>
+          </div>
+          <ol className="ladder">
+            {esc.calls.map((c) => (
+              <li key={c.stage}>
+                <b>{c.label}</b> <span className="muted small">{fmtDateTime(c.at)}</span>
+                <div className="small muted">{c.script}</div>
+              </li>
+            ))}
+          </ol>
+          <div className="row" style={{ justifyContent: "space-between", marginTop: 10 }}>
+            <span className="tiny muted">{ladder?.note}</span>
+            {esc.status === "open" && (
+              <button className="btn" onClick={async () => { await api.cancelEscalation(esc.escalation_id, "clinician"); onDone(); }}>
+                Stop the ladder
+              </button>
+            )}
+          </div>
+        </section>
+      )}
 
       <section className="card">
         {esc.response ? (

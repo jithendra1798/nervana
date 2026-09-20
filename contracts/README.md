@@ -55,7 +55,7 @@ Base path `/v1`. Every `as_of` is optional and defaults to the scenario's `defau
 | `GET /v1/patients/{id}/vitals?as_of=` | none | Simulated wearable signal: `series` (heart rate, HRV, restless minutes, plus that hour's triggers), `baseline`, `correlations` per trigger, `headline`. Always `simulated: true`. |
 | `GET /v1/geocode?q=` | none | Addresses and places in NYC: `{results[{label, lat, lon, zip}]}`, for the search bars |
 | `GET /v1/route?from=lat,lon&to=lat,lon&as_of=&trigger=` | none | The walk: `direct`, `recommended` (a detour when one is genuinely calmer), `by_hour` for the same path, and `timing.advice` |
-| `GET /v1/audit` | — | `{events[{at, event, …}]}` — every alert action, consent and reply |
+| `GET /v1/audit` | none | `{events[{at, event, …}]}` — every alert action, consent and reply |
 | `POST /v1/demo/reset` | — | Clears demo state (actions, help requests, plans) |
 | `GET /fhir/RiskAssessment?patient=&as_of=` | — | The same risk as a FHIR R4 RiskAssessment |
 | `GET /cds-services` · `POST /cds-services/nervana-climate-ptsd` | CDS Hooks request | A `patient-view` card: summary, why, next step, override reasons |
@@ -71,5 +71,6 @@ Field notes:
 - `band` on the map: `low` | `moderate` | `high`.
 - Alert `status`: `new` | `outreach` | `dismissed`.
 - `next_step.source` and plan item `source`: `care_team` | `standard_tips`. A care-team item always comes before the standard tips.
+- An open escalation climbs a **ladder** on the clock: care team, then the on-call clinician, then the 988 crisis line. Each rung is written to `calls` with `mock: true`, and any reply or cancel stops it. **911 is never dialled automatically.** `GET /v1/escalations` returns the ladder's definition alongside the rows.
 - An escalation `packet` is the doctor bundle: `summary`, `level`, `factors`, `exposures_24h`, `tips_shown`, `missing_data`, and `vitals` (simulated).
 - `POST /v1/escalations` without `consent: true` returns `400`. Crisis numbers (988, press 1 for the Veterans Crisis Line; 911) are shown by the frontend and never depend on the API.
