@@ -24,7 +24,7 @@ from .store import REPO, get_store
 router = APIRouter(tags=["routing"])
 
 OSRM = "https://router.project-osrm.org/route/v1/foot"
-UA = {"User-Agent": "nervana-hackathon/0.1"}
+UA = {"User-Agent": "nervana-hackathon/0.1 (Health in Climate AI hackathon; contact via github.com/jithendra1798/nervana)"}
 SAMPLE_M = 150           # how often to sample a route when scoring it
 MAX_DETOUR_RATIO = 1.8   # never suggest a walk far longer than the direct one
 CANDIDATES = 6
@@ -133,6 +133,35 @@ def _shape(route: dict, hour: datetime, trigger: str, kind: str) -> dict:
         "geometry": [[lat, lon] for lon, lat in route["geometry"]["coordinates"]],
         "exposure": _score(route, hour, trigger),
     }
+
+
+NOMINATIM = "https://nominatim.openstreetmap.org/search"
+NYC_VIEWBOX = "-74.26,40.92,-73.68,40.48"
+_geo_cache: dict[str, list[dict]] = {}
+
+
+@router.get("/v1/geocode")
+def geocode(q: str = Query(min_length=3, max_length=120), limit: int = 5) -> dict:
+    """Addresses and places in New York City, for the search bars."""
+    key = q.strip().lower()
+    if key in _geo_cache:
+        return {"query": q, "results": _geo_cache[key]}
+    try:
+        r = requests.get(NOMINATIM, headers=UA, timeout=12, params={
+            "q": q, "format": "json", "limit": limit, "viewbox": NYC_VIEWBOX, "bounded": 1, "countrycodes": "us",
+        })
+        r.raise_for_status()
+        rows = r.json()
+    except (requests.RequestException, ValueError):
+        raise HTTPException(502, "The address lookup did not answer. Try again in a moment.")
+    results = [{
+        "label": row["display_name"].split(", New York")[0][:90],
+        "lat": float(row["lat"]),
+        "lon": float(row["lon"]),
+        "zip": zip_at(float(row["lon"]), float(row["lat"])),
+    } for row in rows]
+    _geo_cache[key] = results
+    return {"query": q, "results": results}
 
 
 @router.get("/v1/route")

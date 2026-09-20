@@ -7,6 +7,7 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | # | Screen | What to do | What to say |
 | --- | --- | --- | --- |
 | 1 | Map | Open **Map**, 9 PM | "Fireworks complaints are 8 to 30 times a usual night across the city, and EPA monitors read 128 µg/m³ of fine particles — about ten times normal. Outlined ZIPs are where clients we serve live." |
+| 1b | Map | Search an address (e.g. "Astoria Park"), then hit **Full screen** | "Search any address or ZIP, and open the map full screen for the room." |
 | 2 | Map | Switch the time picker to 3 PM, then back to 9 PM | "Same day, six hours earlier: nothing. This is an event, not a background score." |
 | 3 | Inbox | Open **Inbox** | "100 clients with PTSD are flagged citywide, 23 to act on. They sit across 52 care teams, so one team sees a handful." |
 | 4 | Inbox | Pick **LIC ACT Team 2** in the care-team filter | "This team has one person tonight: R.M." |
@@ -19,6 +20,7 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 11 | Help requests | Write a reply and send | "The clinician writes the plan. The system never does." |
 | 12 | Client phone | Show the plan updating | "Their doctor's words, at the top of their plan, above the standard tips." |
 | 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
+| 12c | Client phone | In **Going out**, tap **Use my location**, search a destination, **Check the walk** | "It starts from where they actually are, shows what the walk runs through, and answers the question the data supports: when to go." |
 | 13 | Inside the EHR | Open **Inside the EHR** | "None of this needs a new app. The same alert is a CDS Hooks card when a chart opens, and a FHIR RiskAssessment in the record. Every action and consent is logged." |
 
 ## Numbers worth quoting

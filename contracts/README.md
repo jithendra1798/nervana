@@ -52,6 +52,7 @@ Base path `/v1`. Every `as_of` is optional and defaults to the scenario's `defau
 | `GET /v1/escalations?status=open` | — | [escalations.json](fixtures/api/escalations.json) |
 | `POST /v1/escalations/{id}/respond` | `{text, clinician}` | [escalation_responded.json](fixtures/api/escalation_responded.json); the reply is also added to the patient's plan |
 | `GET /v1/patients/{id}/profile` · `PUT …/profile` | `{triggers[], helps[], home{air_conditioning, quiet_room}, support_person, safe_places[], notes, share_with_care_team}` | What the client told us about themselves, plus the options for the form |
+| `GET /v1/geocode?q=` | — | Addresses and places in NYC: `{results[{label, lat, lon, zip}]}`, for the search bars |
 | `GET /v1/route?from=lat,lon&to=lat,lon&as_of=&trigger=` | — | The walk: `direct`, `recommended` (a detour when one is genuinely calmer), `by_hour` for the same path, and `timing.advice` |
 | `GET /v1/audit` | — | `{events[{at, event, …}]}` — every alert action, consent and reply |
 | `POST /v1/demo/reset` | — | Clears demo state (actions, help requests, plans) |

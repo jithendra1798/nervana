@@ -275,6 +275,29 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .tip-source { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
 .plan-item.personal { border-left: 3px solid var(--air); }
 
+.search { position: relative; }
+.search-results {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 1200;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.16); max-height: 260px; overflow-y: auto;
+}
+.search-item {
+  display: block; width: 100%; text-align: left; padding: 9px 12px; font-size: 13px;
+  background: none; border: 0; border-bottom: 1px solid var(--border); color: var(--ink); cursor: pointer;
+}
+.search-item:last-child { border-bottom: 0; }
+.search-item:hover { background: var(--hover); }
+
+.map-box { position: relative; }
+.map-box.is-full { position: fixed; inset: 0; height: 100vh !important; width: 100vw; z-index: 3000; border-radius: 0; }
+.map-full-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 1100;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--ink); font-size: 13px; font-weight: 550; cursor: pointer;
+}
+.map-full-btn:hover { background: var(--hover); }
+
 .hours { display: flex; align-items: flex-end; gap: 3px; height: 70px; }
 .hour-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
 .hour-bar { width: 100%; border-radius: 3px 3px 0 0; }

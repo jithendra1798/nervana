@@ -48,11 +48,16 @@ def personal_tips(profile: dict | None, factors: list[dict]) -> list[dict]:
     out: list[dict] = []
 
     named = [t for t in profile.get("triggers", []) if t in TRIGGER_MATCH.get(trigger, set())]
+    others = [t for t in profile.get("triggers", []) if t not in TRIGGER_MATCH.get(trigger, set())]
     if named:
         out.append({"trigger": trigger, "source": "your_profile",
                     "text": f"{named[0]} is one of the things you told us sets you off, and that's what's around you right now."})
+    elif others:
+        kind = {"noise": "loud", "heat": "hot", "air": "smoky"}[trigger]
+        out.append({"trigger": trigger, "source": "your_profile",
+                    "text": f"It's {kind} around you right now. That's not one of the triggers you named, but here's what you told us helps."})
 
-    for help_item in profile.get("helps", [])[:2]:
+    for help_item in profile.get("helps", [])[:4]:
         if help_item not in HELP_TEXT:
             continue
         allowed = HELP_TRIGGERS.get(help_item)
@@ -74,7 +79,7 @@ def personal_tips(profile: dict | None, factors: list[dict]) -> list[dict]:
     for place in profile.get("safe_places", [])[:2]:
         out.append({"trigger": trigger, "source": "your_profile", "text": f"If home gets to be too much, {place} is on your list of calmer places."})
 
-    return out[:5]
+    return out[:7]
 
 
 def merge(personal: list[dict], standard: list[dict]) -> list[dict]:
@@ -83,6 +88,20 @@ def merge(personal: list[dict], standard: list[dict]) -> list[dict]:
         return standard
     covered = {t["trigger"] for t in personal}
     return personal + [t for t in standard if t["trigger"] not in covered]
+
+
+def next_step_suffix(profile: dict | None) -> str:
+    """Added to the care team's next step, so outreach starts from what works."""
+    if not profile or not profile.get("share_with_care_team"):
+        return ""
+    bits = []
+    if profile.get("helps"):
+        bits.append(", ".join(h.lower() for h in profile["helps"][:2]))
+    if profile.get("support_person"):
+        bits.append(f"reaching {profile['support_person']}")
+    if (profile.get("home") or {}).get("air_conditioning") is False:
+        return " They have no air conditioning at home, so offer a cooling center."
+    return f" They tell us {' and '.join(bits)} help — check both are possible." if bits else ""
 
 
 def clinician_note(profile: dict | None, factors: list[dict]) -> str | None:

@@ -119,6 +119,14 @@ def alert_action(alert_id_: str, body: ActionBody, as_of: str | None = None) -> 
     return _alert(match, hour)
 
 
+def _next_step(level: str, factors: list[dict], plan: list[dict], profile: dict | None) -> dict:
+    """Standard guidance, finished with what this person says works for them."""
+    step = recommend.next_step(level, factors, plan)
+    if step["source"] == "standard_tips" and level != "none":
+        step = {**step, "text": step["text"] + personalize.next_step_suffix(profile)}
+    return step
+
+
 def _risk_payload(patient_id: str, hour: datetime) -> dict:
     s = get_store()
     p = s.patient(patient_id)
@@ -140,7 +148,7 @@ def _risk_payload(patient_id: str, hour: datetime) -> dict:
         "score": row["score"] if row else 0.0,
         "factors": factors,
         "uncertainty": {"confidence": row["uncertainty"]["confidence"] if row else "medium", "caveats": caveats},
-        "next_step": recommend.next_step(row["level"] if row else "none", factors, plan),
+        "next_step": _next_step(row["level"] if row else "none", factors, plan, profile),
         "tips": personalize.merge(personalize.personal_tips(profile, factors), recommend.tips_for(factors)),
         "profile_note": personalize.clinician_note(profile, factors),
         "has_profile": bool(profile),

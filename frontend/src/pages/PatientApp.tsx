@@ -68,6 +68,15 @@ export function PatientApp() {
   const r = risk.data;
   const h = headline(r);
   const items = plan.data?.items ?? [];
+  const LABELS: Record<string, string> = {
+    care_team: "From your care team",
+    your_profile: "Because of what you told us",
+    standard_tips: "General advice",
+  };
+  const groups = (["care_team", "your_profile", "standard_tips"] as const)
+    .map((source) => [LABELS[source], items.filter((i) => i.source === source)] as const)
+    .filter(([, list]) => list.length > 0);
+  const yours = r.tips.find((t) => t.source === "your_profile");
 
   return (
     <div className="phone-stage">
@@ -81,6 +90,7 @@ export function PatientApp() {
         <div className={`status-card ${r.level}`}>
           <div style={{ fontWeight: 650, fontSize: 17 }}>{h.title}</div>
           <p style={{ marginTop: 6 }}>{h.body}</p>
+          {yours && <p style={{ marginTop: 8, fontWeight: 550 }}>{yours.text}</p>}
         </div>
 
         <Link to={`/me/${r.patient.id}/going-out`} className="btn" style={{ width: "100%", marginBottom: 12 }}>
@@ -102,20 +112,21 @@ export function PatientApp() {
           <h2>Your plan</h2>
           <Link className="small subtle" to={`/me/${r.patient.id}/about`}>About you</Link>
         </div>
+        {groups.map(([label, list]) => (
+          <div key={label} style={{ marginBottom: 14 }}>
+            <h3 className="muted" style={{ marginBottom: 8, fontWeight: 600 }}>{label}</h3>
+            <ul className="plain-list">
+              {list.map((i) => (
+                <li key={i.text + i.created_at} className={`plan-item ${i.source === "care_team" ? "care" : i.source === "your_profile" ? "personal" : ""}`}>
+                  {i.text}
+                  {i.source === "care_team" && <div className="plan-meta">From {i.author}{i.created_at ? ` · ${fmtDateTime(i.created_at)}` : ""}</div>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
         {plan.error && <ErrorBox error={plan.error} />}
-        {items.length ? (
-          <ul className="plain-list">
-            {items.map((i) => (
-              <li key={i.text + i.created_at} className={`plan-item ${i.source === "care_team" ? "care" : i.source === "your_profile" ? "personal" : ""}`}>
-                {i.text}
-                {i.source === "care_team" && <div className="plan-meta">From {i.author}{i.created_at ? ` · ${fmtDateTime(i.created_at)}` : ""}</div>}
-                {i.source === "your_profile" && <div className="plan-meta">Based on what you told us</div>}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="subtle small">Your care team hasn't added anything yet.</p>
-        )}
+        {!items.length && <p className="subtle small">Your care team hasn't added anything yet.</p>}
       </div>
     </div>
   );

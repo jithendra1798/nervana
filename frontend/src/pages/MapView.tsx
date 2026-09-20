@@ -1,9 +1,11 @@
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import L, { type Layer, type PathOptions } from "leaflet";
 import { useEffect, useMemo, useState } from "react";
-import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
+import { CircleMarker, GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
+import { AddressSearch } from "../components/AddressSearch";
 import { TriggerKey } from "../components/Badges";
+import { MapFrame, ResizeWatcher } from "../components/MapFrame";
 import { Icon } from "../components/Icon";
 import { ErrorBox } from "../components/States";
 import { api } from "../lib/api";
@@ -33,6 +35,15 @@ function FocusZip({ feature }: { feature: ZipFeature | undefined }) {
   return null;
 }
 
+/** Flies to a searched address. */
+function FlyTo({ point }: { point: [number, number] | undefined }) {
+  const map = useMap();
+  useEffect(() => {
+    if (point) map.flyTo(point, 15, { duration: 0.6 });
+  }, [point, map]);
+  return null;
+}
+
 export function MapView() {
   const { asOf } = useAsOf();
   const nav = useNavigate();
@@ -40,8 +51,9 @@ export function MapView() {
   const { resolved } = useTheme();
   const [trigger, setTrigger] = useState<(typeof TRIGGERS)[number]>("composite");
   const [geo, setGeo] = useState<FeatureCollection<Geometry, Props>>();
-  const [query, setQuery] = useState("");
   const [focus, setFocus] = useState<string>();
+  const [point, setPoint] = useState<[number, number]>();
+  const [pointLabel, setPointLabel] = useState<string>();
   const map = useApi(() => (asOf ? api.map(asOf, trigger) : Promise.resolve(undefined)), [asOf, trigger]);
   const alerts = useApi(() => (asOf ? api.alerts(asOf) : Promise.resolve(undefined)), [asOf]);
 
@@ -62,12 +74,13 @@ export function MapView() {
   );
   const focusZip = focus ? byZip.get(focus) : undefined;
 
-  const search = (raw: string) => {
-    const q = raw.trim();
-    if (!q || !geo) return;
-    const hit = geo.features.find((f) => f.properties.MODZCTA === q)
-      ?? geo.features.find((f) => f.properties.label.includes(q));
+  const focusOnZip = (zip: string) => {
+    if (!geo) return;
+    const hit = geo.features.find((f) => f.properties.MODZCTA === zip)
+      ?? geo.features.find((f) => f.properties.label.includes(zip));
     setFocus(hit?.properties.MODZCTA);
+    setPoint(undefined);
+    setPointLabel(undefined);
   };
 
   const style = (f?: ZipFeature): PathOptions => {
@@ -123,16 +136,16 @@ export function MapView() {
             </button>
           ))}
         </div>
-        <form className="row" style={{ gap: 6 }} onSubmit={(e) => { e.preventDefault(); search(query); }}>
-          <input type="text" inputMode="numeric" value={query} placeholder="Find a ZIP, e.g. 11101"
-            onChange={(e) => setQuery(e.target.value)} style={{ width: 175 }} aria-label="Find a ZIP" />
-          <button className="btn" type="submit">Find</button>
-          {focus && <button className="btn ghost" type="button" onClick={() => { setFocus(undefined); setQuery(""); }}>Clear</button>}
-        </form>
+        <AddressSearch width={320} placeholder="Search an address or ZIP, e.g. 11101"
+          onZip={focusOnZip}
+          onPick={(hit) => { setPoint([hit.lat, hit.lon]); setPointLabel(hit.label); if (hit.zip) setFocus(hit.zip); }} />
+        {(focus || point) && (
+          <button className="btn ghost" type="button" onClick={() => { setFocus(undefined); setPoint(undefined); setPointLabel(undefined); }}>Clear</button>
+        )}
       </div>
       {map.error && <ErrorBox error={map.error} />}
       <div className="map-layout">
-        <div className={`map-box ${map.loading ? "stale" : ""}`}>
+        <MapFrame height={620} label="Conditions by ZIP">
           <MapContainer center={[40.73, -73.93]} zoom={11} minZoom={10} scrollWheelZoom style={{ height: "100%", width: "100%" }}>
             <TileLayer key={resolved} url={c.tiles} attribution="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors" maxZoom={16} />
             {geo && map.data && (
@@ -140,9 +153,18 @@ export function MapView() {
                 style={style as never} onEachFeature={onEach as never} />
             )}
             <FocusZip feature={focusFeature} />
+            <FlyTo point={point} />
+            {point && <CircleMarker center={point} radius={7} pathOptions={{ color: c.surface, weight: 2, fillColor: c.noise, fillOpacity: 1 }} />}
+            <ResizeWatcher trigger={`${trigger}-${focus ?? ""}`} />
           </MapContainer>
-        </div>
+        </MapFrame>
         <div>
+          {pointLabel && (
+            <div className="card">
+              <h3 style={{ marginBottom: 6 }}>Searched</h3>
+              <p className="small">{pointLabel}</p>
+            </div>
+          )}
           {focusZip && (
             <div className="card">
               <div className="card-head">

@@ -12,6 +12,9 @@ const PATHS = {
   send: "M4 12 20 4l-6 16-3-7-7-1Z",
   reset: "M4 4v6h6M20 20v-6h-6M5.5 15A7 7 0 0 0 18 16.5M18.5 9A7 7 0 0 0 6 7.5",
   clock: "M12 7v5l3 2m7-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z",
+  expand: "M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5",
+  collapse: "M9 4v5H4m11 11v-5h5M15 4v5h5M9 20v-5H4",
+  pin: "M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z",
 } as const;
 
 export type IconName = keyof typeof PATHS;
