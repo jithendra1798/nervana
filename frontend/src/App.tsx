@@ -15,6 +15,7 @@ import { Integration } from "./pages/Integration";
 import { MapView } from "./pages/MapView";
 import { PatientApp, PatientPicker } from "./pages/PatientApp";
 import { PatientDetail } from "./pages/PatientDetail";
+import { Report } from "./pages/Report";
 
 function TopBar() {
   const { hours, asOf, setAsOf } = useAsOf();
@@ -71,6 +72,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Inbox />} />
           <Route path="/patients/:id" element={<PatientDetail />} />
+          <Route path="/patients/:id/report" element={<Report />} />
           <Route path="/map" element={<MapView />} />
           <Route path="/help-requests" element={<HelpRequests />} />
           <Route path="/me" element={<PatientPicker />} />

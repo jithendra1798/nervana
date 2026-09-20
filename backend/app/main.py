@@ -271,6 +271,41 @@ def put_profile(patient_id: str, body: ProfileBody) -> dict:
     return {"patient_id": patient_id, "profile": saved, "options": personalize.PROFILE_OPTIONS}
 
 
+@app.get("/v1/patients/{patient_id}/report")
+def patient_report(patient_id: str, as_of: str | None = None) -> dict:
+    """Everything about one client at one hour, ready to print or hand over."""
+    s = get_store()
+    hour = s.resolve(as_of)
+    p = s.patient(patient_id)
+    if not p:
+        raise HTTPException(404, f"No client {patient_id}")
+    payload = _risk_payload(patient_id, hour)
+    v = vitals.summary(p, hour)
+    timeline = payload["timeline"]
+    peaks = {t: max((row[t] for row in timeline), default=0.0) for t in ("noise", "heat", "air")}
+    history = [e for e in workflow.audit() if e.get("patient_id") == patient_id]
+    return {
+        "generated_at": workflow.now(),
+        "scenario": {k: s.scenario[k] for k in ("id", "label", "default_as_of") if k in s.scenario},
+        "as_of": hour.isoformat(),
+        "patient": p,
+        "level": payload["level"],
+        "score": payload["score"],
+        "factors": payload["factors"],
+        "uncertainty": payload["uncertainty"],
+        "next_step": payload["next_step"],
+        "tips": payload["tips"],
+        "timeline": timeline,
+        "peaks": {t: round(x, 3) for t, x in peaks.items()},
+        "vitals": v,
+        "plan": patient_plan(patient_id, as_of)["items"],
+        "profile_note": payload.get("profile_note"),
+        "history": history,
+        "sources": s.scenario.get("sources", []),
+        "method": "Rule-based score: trigger weight x severity x the person's vulnerability. Weights are assumptions, not fitted values.",
+    }
+
+
 @app.get("/v1/patients/{patient_id}/vitals")
 def patient_vitals(patient_id: str, as_of: str | None = None) -> dict:
     """Simulated wearable signal for this client, and how it tracks each trigger."""

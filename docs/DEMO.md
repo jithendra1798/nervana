@@ -23,6 +23,7 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 12 | Client phone | Show the plan updating | "Their doctor's words, at the top of their plan, above the standard tips." |
 | 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
 | 12c | Client phone | In **Going out**, tap **Use my location**, search a destination, **Check the walk** | "It starts from where they actually are, shows what the walk runs through, and answers the question the data supports: when to go." |
+| 12d | Patient detail | Click **Report** | "One page for the chart, the case conference or the client's own doctor: why, how sure, what their body and surroundings did, what the team did, and the sources. It prints or saves as a PDF." |
 | 13 | Inside the EHR | Open **Inside the EHR** | "None of this needs a new app. The same alert is a CDS Hooks card when a chart opens, and a FHIR RiskAssessment in the record. Every action and consent is logged." |
 
 ## Numbers worth quoting
@@ -31,6 +32,10 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 - PM2.5 peaked at 160 µg/m³ at 11 PM, roughly 14× the July median of 11.5.
 - Nobody is flagged before 3 PM; 23 are "act" at 9 PM, 41 at 11 PM.
 - 150 synthetic clients across 52 care teams; the busiest team sees 6.
+
+## Rehearse it
+
+`docs/rehearse_demo.py` walks the whole script in a browser and checks 20 things (needs the API and web app running, plus `playwright`). Run it once before pitching.
 
 ## If something breaks
 

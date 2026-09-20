@@ -317,7 +317,13 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
   display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .crisis { border-radius: 14px; border: 2px solid var(--critical); padding: 14px; margin-top: 14px; }
-.crisis a.call { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 10px; background: var(--surface-2); text-decoration: none; font-weight: 650; margin-top: 8px; }
+.crisis-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.crisis a.call {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 10px 6px; border-radius: 10px; background: var(--surface-2);
+  text-decoration: none; font-weight: 650; line-height: 1.2;
+}
+.crisis a.call b { font-size: 17px; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; margin: 12px 0; }
 .check input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
 .notice { padding: 12px 14px; border-radius: 10px; background: var(--surface-2); font-size: 14px; }
@@ -325,3 +331,20 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .stack > * + * { margin-top: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- report ---------- */
+.report { max-width: 860px; }
+.report section { padding: 16px 0; border-top: 1px solid var(--border); }
+.report h2 { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.report-head { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; padding-bottom: 14px; }
+.report-foot { padding-top: 14px; border-top: 1px solid var(--border); }
+
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff; color: #000; }
+  .topbar, .no-print, .linkish { display: none !important; }
+  .page { padding: 0; max-width: none; }
+  .report section { break-inside: avoid; }
+  .card, .tile { box-shadow: none; }
+  a { text-decoration: none; color: #000; }
+}

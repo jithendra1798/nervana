@@ -45,7 +45,10 @@ export function PatientDetail() {
 
   return (
     <div className={`page ${risk.loading ? "stale" : ""}`}>
-      <Link to="/" className="btn ghost" style={{ marginLeft: -10, marginBottom: 8 }}><Icon name="back" /> Inbox</Link>
+      <div className="row" style={{ justifyContent: "space-between", marginBottom: 8 }}>
+        <Link to="/" className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Inbox</Link>
+        <Link to={`/patients/${id}/report`} className="btn">Report</Link>
+      </div>
 
       <div className="card" style={{ marginBottom: 16 }}>
         <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>

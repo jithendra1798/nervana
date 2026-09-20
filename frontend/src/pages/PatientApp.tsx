@@ -62,6 +62,7 @@ export function PatientApp() {
   const risk = useApi(() => (asOf ? api.patientRisk(id, asOf) : Promise.resolve(undefined)), [id, asOf]);
   const plan = useApi(() => api.plan(id), [id, asOf], 4000);
   const [open, setOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   if (risk.error) return <div className="page"><ErrorBox error={risk.error} /></div>;
   if (!risk.data) return <div className="page"><Loading /></div>;
@@ -69,14 +70,20 @@ export function PatientApp() {
   const h = headline(r);
   const items = plan.data?.items ?? [];
   const LABELS: Record<string, string> = {
-    care_team: "From your care team",
-    your_profile: "Because of what you told us",
-    standard_tips: "General advice",
+    care_team: "From your team",
+    your_profile: "Yours",
+    standard_tips: "General",
   };
   const yours = r.tips.find((t) => t.source === "your_profile");
+  // Keep the screen short: the team's words, a few of their own, one general tip.
+  const CAPS: Record<string, number> = { care_team: 2, your_profile: 3, standard_tips: 1 };
   const groups = (["care_team", "your_profile", "standard_tips"] as const)
-    .map((source) => [LABELS[source], items.filter((i) => i.source === source && i.text !== yours?.text)] as const)
+    .map((source) => {
+      const list = items.filter((i) => i.source === source && i.text !== yours?.text);
+      return [LABELS[source], showAll ? list : list.slice(0, CAPS[source]), list.length] as const;
+    })
     .filter(([, list]) => list.length > 0);
+  const hidden = groups.reduce((n, [, list, total]) => n + (total - list.length), 0);
 
   return (
     <div className="phone-stage">
@@ -94,7 +101,7 @@ export function PatientApp() {
         </div>
 
         <Link to={`/me/${r.patient.id}/going-out`} className="btn" style={{ width: "100%", marginBottom: 12 }}>
-          <Icon name="send" /> I have to go somewhere
+          <Icon name="send" /> Going out
         </Link>
 
         {open ? <HelpFlow patientId={r.patient.id} careTeam={r.patient.care_team} onClose={() => setOpen(false)} /> : (
@@ -104,7 +111,7 @@ export function PatientApp() {
         {!r.has_profile && (
           <Link to={`/me/${r.patient.id}/about`} className="notice" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
             <b>Tell us what helps you</b>
-            <div className="small subtle" style={{ marginTop: 4 }}>Five questions, once. Then this advice is yours, not generic.</div>
+            <div className="small subtle" style={{ marginTop: 2 }}>Five questions, once.</div>
           </Link>
         )}
 
@@ -125,8 +132,12 @@ export function PatientApp() {
             </ul>
           </div>
         ))}
+        {hidden > 0 && (
+          <button className="linkish" onClick={() => setShowAll(true)}>Show {hidden} more</button>
+        )}
+        {showAll && <button className="linkish" onClick={() => setShowAll(false)}>Show less</button>}
         {plan.error && <ErrorBox error={plan.error} />}
-        {!items.length && <p className="subtle small">Your care team hasn't added anything yet.</p>}
+        {!items.length && <p className="subtle small">Nothing here yet.</p>}
       </div>
     </div>
   );
@@ -153,28 +164,31 @@ function HelpFlow({ patientId, careTeam, onClose }: { patientId: string; careTea
 
   return (
     <div>
-      <div className="crisis" role="region" aria-label="Crisis support">
-        <div style={{ fontWeight: 700 }}>If you're in crisis or thinking about hurting yourself</div>
-        <a className="call" href="tel:988"><span>Call 988, then press 1 for veterans</span><Icon name="phone" /></a>
-        <a className="call" href="sms:988"><span>Text 988</span><Icon name="message" /></a>
-        <a className="call" href="tel:911"><span>Emergency: 911</span><Icon name="phone" /></a>
+      <div className="crisis" role="region" aria-label="Crisis lines">
+        <div style={{ fontWeight: 700 }}>In a crisis?</div>
+        <div className="crisis-row">
+          <a className="call" href="tel:988"><Icon name="phone" /><b>988</b><span className="tiny muted">call</span></a>
+          <a className="call" href="sms:988"><Icon name="message" /><b>988</b><span className="tiny muted">text</span></a>
+          <a className="call" href="tel:911"><Icon name="phone" /><b>911</b><span className="tiny muted">emergency</span></a>
+        </div>
+        <p className="tiny muted" style={{ marginTop: 8 }}>Veterans: call 988, then press 1.</p>
       </div>
 
       <div style={{ marginTop: 16 }}>
         {sent ? (
           <div className="notice">
-            <b>Sent to {careTeam}</b> at {fmtDateTime(sent.created_at)}. Their reply will show up in your plan below.
+            <b>Sent to {careTeam}.</b> Their reply appears in your plan below.
           </div>
         ) : (
           <>
-            <div style={{ fontWeight: 650 }}>Let my care team know</div>
-            <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Anything you want them to know (optional)" style={{ marginTop: 8, minHeight: 64 }} />
+            <div style={{ fontWeight: 650 }}>Tell your care team</div>
+            <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="What's happening (optional)" style={{ marginTop: 8, minHeight: 60 }} />
             <label className="check">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-              <span>I agree to share how I'm doing and today's conditions near me with {careTeam}.</span>
+              <span>Share this and today's conditions with {careTeam}.</span>
             </label>
             <div className="row">
-              <button className="btn primary" disabled={!consent || busy} onClick={send}><Icon name="send" /> Send to my care team</button>
+              <button className="btn primary" disabled={!consent || busy} onClick={send}><Icon name="send" /> Send</button>
               <button className="btn ghost" onClick={onClose}>Not now</button>
             </div>
             {err && <div style={{ marginTop: 10 }}><ErrorBox error={err} /></div>}

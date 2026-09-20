@@ -257,7 +257,7 @@ def calmer_route(
             if best is not direct
             else "The direct walk is already the calmest we can find right now."
         ),
-        "caveat": "Conditions are estimated for whole ZIPs, so this avoids the worst areas, not the worst streets.",
+        "caveat": "Estimated by ZIP, not by street.",
     }
 
 
