@@ -16,11 +16,12 @@ Replay: **July 4, 2023**, the loudest night of the five we compared. Set the tim
 | 6 | Patient detail | Point at the confidence badge and caveats | "The alert says how sure it is. Low, because their contact details are over a year old and the exposure is ZIP-level, not their block. And it says what we don't have: no pharmacy data." |
 | 7 | Patient detail | Click **Log outreach** | "One alert for the whole event, so they aren't pinged again at 10, 11 and midnight." |
 | 8 | Client phone | On the right window, tap **I need help** | "This is the client's side. Crisis lines come first — 988, press 1 for veterans — before anything else happens." |
+| 8b | Client phone | Tap **Breathe with me** | "The grounding exercise is read out loud, paced, because reading is hard mid-flashback. It uses the phone's own voice, so it works with no signal and nothing leaves the device." |
 | 9 | Client phone | Tick consent, add a note, send | "Nothing reaches the care team without the client agreeing to it." |
 | 10 | Help requests | Back on the left, open **Help requests** | "The team gets a bundle, not a ping: what they pressed, why they may be struggling, the last 24 hours nearby, the tips they already saw, and what we don't know." |
 | 10b | Help requests | Point at the vitals inside the bundle | "When someone reaches out, the team sees the body and the surroundings on the same hours, not just a message." |
 | 11 | Help requests | Write a reply and send | "The clinician writes the plan. The system never does." |
-| 12 | Client phone | Show the plan updating | "Their doctor's words, at the top of their plan, above the standard tips." |
+| 12 | Client phone | Show the plan updating, then tap **Listen** | "Their doctor's words, at the top of their plan, above the standard tips." |
 | 12b | Client phone | Open **About you**, then **I have to go somewhere** | "The advice is theirs, not generic: their triggers, what helps them, whether home has AC, who they call. And if they must go out, we show what the walk runs through and whether waiting an hour helps — on July 4 it only gets louder, so go now." |
 | 12c | Client phone | In **Going out**, tap **Use my location**, search a destination, **Check the walk** | "It starts from where they actually are, shows what the walk runs through, and answers the question the data supports: when to go." |
 | 12d | Patient detail | Click **Report** | "One page for the chart, the case conference or the client's own doctor: why, how sure, what their body and surroundings did, what the team did, and the sources. It prints or saves as a PDF." |

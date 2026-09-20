@@ -14,6 +14,8 @@ const PATHS = {
   clock: "M12 7v5l3 2m7-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z",
   expand: "M4 9V4h5M20 15v5h-5M20 9V4h-5M4 15v5h5",
   collapse: "M9 4v5H4m11 11v-5h5M15 4v5h5M9 20v-5H4",
+  sound: "M11 5 6 9H3v6h3l5 4V5Zm4.5 3.5a5 5 0 0 1 0 7M18 6a9 9 0 0 1 0 12",
+  stop: "M7 7h10v10H7z",
   pin: "M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z",
 } as const;
 

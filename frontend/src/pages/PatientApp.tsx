@@ -6,6 +6,7 @@ import { api } from "../lib/api";
 import { useAsOf } from "../lib/asOf";
 import { fmtDateTime, fmtHour } from "../lib/format";
 import { useApi } from "../lib/hooks";
+import { GROUNDING_LINES, useSpeech } from "../lib/speech";
 import type { Escalation, PatientRisk } from "../lib/types";
 
 /** /me: pick which client's phone to preview (demo only). */
@@ -63,6 +64,7 @@ export function PatientApp() {
   const plan = useApi(() => api.plan(id), [id, asOf], 4000);
   const [open, setOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const speech = useSpeech();
 
   if (risk.error) return <div className="page"><ErrorBox error={risk.error} /></div>;
   if (!risk.data) return <div className="page"><Loading /></div>;
@@ -117,7 +119,14 @@ export function PatientApp() {
 
         <div className="row" style={{ justifyContent: "space-between", margin: "22px 0 10px" }}>
           <h2>Your plan</h2>
-          <Link className="small subtle" to={`/me/${r.patient.id}/about`}>About you</Link>
+          <div className="row" style={{ gap: 10 }}>
+            {speech.supported && items.length > 0 && (
+              <button className="btn ghost small" onClick={() => (speech.speaking ? speech.stop() : speech.speak([h.body, ...items.slice(0, 5).map((i) => i.text)], { gap: 1 }))}>
+                <Icon name={speech.speaking ? "stop" : "sound"} size={15} /> {speech.speaking ? "Stop" : "Listen"}
+              </button>
+            )}
+            <Link className="small subtle" to={`/me/${r.patient.id}/about`}>About you</Link>
+          </div>
         </div>
         {groups.map(([label, list]) => (
           <div key={label} style={{ marginBottom: 14 }}>
@@ -125,6 +134,11 @@ export function PatientApp() {
             <ul className="plain-list">
               {list.map((i) => (
                 <li key={i.text + i.created_at} className={`plan-item ${i.source === "care_team" ? "care" : i.source === "your_profile" ? "personal" : ""}`}>
+                  {speech.supported && (
+                    <button className="speak-btn" aria-label="Read this out loud" onClick={() => speech.speak([i.text])}>
+                      <Icon name="sound" size={14} />
+                    </button>
+                  )}
                   {i.text}
                   {i.source === "care_team" && <div className="plan-meta">From {i.author}{i.created_at ? ` · ${fmtDateTime(i.created_at)}` : ""}</div>}
                 </li>
@@ -144,6 +158,7 @@ export function PatientApp() {
 }
 
 function HelpFlow({ patientId, careTeam, onClose }: { patientId: string; careTeam: string; onClose: () => void }) {
+  const speech = useSpeech();
   const [consent, setConsent] = useState(false);
   const [note, setNote] = useState("");
   const [sent, setSent] = useState<Escalation>();
@@ -173,6 +188,13 @@ function HelpFlow({ patientId, careTeam, onClose }: { patientId: string; careTea
         </div>
         <p className="tiny muted" style={{ marginTop: 8 }}>Veterans: call 988, then press 1.</p>
       </div>
+
+      {speech.supported && (
+        <button className="btn" style={{ width: "100%", marginTop: 10 }}
+          onClick={() => (speech.speaking ? speech.stop() : speech.speak(GROUNDING_LINES, { rate: 0.82, gap: 1 }))}>
+          <Icon name={speech.speaking ? "stop" : "sound"} /> {speech.speaking ? "Stop" : "Breathe with me"}
+        </button>
+      )}
 
       <div style={{ marginTop: 16 }}>
         {sent ? (

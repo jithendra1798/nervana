@@ -276,6 +276,14 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: transparent; }
 .tip-source { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
 .plan-item.personal { border-left: 3px solid var(--air); }
+.plan-item { position: relative; padding-right: 40px; }
+.speak-btn {
+  position: absolute; top: 8px; right: 8px;
+  border: 0; background: transparent; color: var(--muted); cursor: pointer;
+  padding: 4px; border-radius: 6px; line-height: 0;
+}
+.speak-btn:hover { background: var(--hover); color: var(--ink); }
+.btn.small { padding: 5px 10px; font-size: 13px; }
 
 .search { position: relative; }
 .search-results {
