@@ -127,11 +127,12 @@ export function GoingOut() {
   return (
     <div className="phone-stage">
       <div className="phone" style={{ maxWidth: 460 }}>
-        <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
-        <h1 style={{ marginTop: 10 }}>Going out?</h1>
-        <p className="subtle small" style={{ marginTop: 6 }}>
-          Search where you're heading, or tap the map. We'll show what the walk runs through right now, and whether waiting helps.
-        </p>
+        <div className="phone-head">
+          <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
+          <h1 style={{ marginTop: 8 }}>Going out?</h1>
+          <p className="subtle small" style={{ marginTop: 4 }}>Search or tap where you are going.</p>
+        </div>
+        <div className="phone-body">
 
         <div className="stack" style={{ marginTop: 14 }}>
           <div className="row" style={{ justifyContent: "space-between" }}>
@@ -229,6 +230,7 @@ export function GoingOut() {
             <p className="tiny muted" style={{ marginTop: 10 }}>{answer.caveat}</p>
           </>
         )}
+        </div>
       </div>
     </div>
   );

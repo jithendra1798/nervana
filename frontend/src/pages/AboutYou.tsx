@@ -69,11 +69,12 @@ export function AboutYou() {
   return (
     <div className="phone-stage">
       <form className="phone" onSubmit={submit}>
-        <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
-        <h1 style={{ marginTop: 10 }}>About you</h1>
-        <p className="subtle small" style={{ marginTop: 6 }}>
-          Five questions, once. Your answers decide what we suggest when things get loud, hot or smoky near you.
-        </p>
+        <div className="phone-head">
+          <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
+          <h1 style={{ marginTop: 8 }}>About you</h1>
+          <p className="subtle small" style={{ marginTop: 4 }}>Five questions, once. Your answers shape what we suggest.</p>
+        </div>
+        <div className="phone-body">
 
         <h2 style={{ margin: "20px 0 8px" }}>What sets you off?</h2>
         <Chips options={options.triggers} selected={form.triggers} onToggle={toggle("triggers")} />
@@ -116,8 +117,9 @@ export function AboutYou() {
         </label>
 
         {err && <div style={{ marginTop: 12 }}><ErrorBox error={err} /></div>}
-        <div className="row" style={{ marginTop: 16 }}>
-          <button className="btn primary" type="submit" disabled={saving}>
+        </div>
+        <div className="phone-foot row">
+          <button className="btn primary" type="submit" disabled={saving} style={{ flex: 1 }}>
             <Icon name="check" /> {saved ? "Saved" : saving ? "Saving…" : "Save"}
           </button>
           <Link className="btn ghost" to={`/me/${id}`}>Cancel</Link>

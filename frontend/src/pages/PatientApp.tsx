@@ -92,13 +92,16 @@ export function PatientApp() {
   return (
     <div className="phone-stage">
       <div className="phone" aria-label="Client phone preview">
-        <div className="row" style={{ justifyContent: "space-between" }}>
-          <span className="small muted">{asOf ? fmtHour(asOf) : ""}</span>
-          <span className="small muted">Nervana</span>
+        <div className="phone-head">
+          <div className="row" style={{ justifyContent: "space-between" }}>
+            <span className="small muted">{asOf ? fmtHour(asOf) : ""}</span>
+            <span className="small muted">Nervana</span>
+          </div>
+          <h1 style={{ marginTop: 10 }}>Hi {r.patient.name}</h1>
         </div>
-        <h1 style={{ marginTop: 14 }}>Hi {r.patient.name}</h1>
 
-        <div className={`status-card ${r.level}`}>
+        <div className="phone-body">
+        <div className={`status-card ${r.level}`} style={{ marginTop: 0 }}>
           <div style={{ fontWeight: 650, fontSize: 17 }}>{h.title}</div>
           <p style={{ marginTop: 6 }}>{h.body}</p>
           {yours && <p style={{ marginTop: 8, fontWeight: 550 }}>{yours.text}</p>}
@@ -121,9 +124,7 @@ export function PatientApp() {
           <Icon name="send" /> Going out
         </Link>
 
-        {open ? <HelpFlow patientId={r.patient.id} careTeam={r.patient.care_team} onClose={() => setOpen(false)} /> : (
-          <button className="help-btn" onClick={() => setOpen(true)}><Icon name="heart" size={20} /> I need help</button>
-        )}
+        {open && <HelpFlow patientId={r.patient.id} careTeam={r.patient.care_team} onClose={() => setOpen(false)} />}
 
         {!r.has_profile && (
           <Link to={`/me/${r.patient.id}/about`} className="notice" style={{ display: "block", marginTop: 16, textDecoration: "none" }}>
@@ -165,6 +166,13 @@ export function PatientApp() {
           <button className="linkish" onClick={() => setShowAll(true)}>Show {hidden} more</button>
         )}
         {showAll && <button className="linkish" onClick={() => setShowAll(false)}>Show less</button>}
+        </div>
+
+        {!open && (
+          <div className="phone-foot">
+            <button className="help-btn" onClick={() => setOpen(true)}><Icon name="heart" size={20} /> I need help</button>
+          </div>
+        )}
         {plan.error && <ErrorBox error={plan.error} />}
         {!items.length && <p className="subtle small">Nothing here yet.</p>}
       </div>
