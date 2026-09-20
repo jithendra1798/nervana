@@ -19,6 +19,44 @@
   }
  },
  {
+  "id": "SYN-0143",
+  "name": "D.K.",
+  "age": 67,
+  "zip": "10457",
+  "program": "Supported housing",
+  "diagnoses": [
+   "F43.12 PTSD, chronic",
+   "F33.1 Major depressive disorder"
+  ],
+  "veteran": false,
+  "care_team": "Bronx Supported Housing 2",
+  "contact_last_updated": "2023-05-02",
+  "flags": {
+   "recent_crisis_visit": false,
+   "substance_use": false,
+   "supported_housing": true
+  }
+ },
+ {
+  "id": "SYN-0144",
+  "name": "J.P.",
+  "age": 29,
+  "zip": "11104",
+  "program": "Outpatient clinic",
+  "diagnoses": [
+   "F43.10 PTSD",
+   "F41.1 Generalized anxiety disorder"
+  ],
+  "veteran": true,
+  "care_team": "Sunnyside Clinic 3",
+  "contact_last_updated": "2023-06-20",
+  "flags": {
+   "recent_crisis_visit": false,
+   "substance_use": false,
+   "supported_housing": false
+  }
+ },
+ {
   "id": "SYN-1000",
   "name": "A.N.",
   "age": 50,
@@ -2790,44 +2828,6 @@
   "flags": {
    "recent_crisis_visit": false,
    "substance_use": true,
-   "supported_housing": false
-  }
- },
- {
-  "id": "SYN-1147",
-  "name": "E.W.",
-  "age": 38,
-  "zip": "11222",
-  "program": "Community treatment",
-  "diagnoses": [
-   "F43.10 PTSD",
-   "F33.1 Major depressive disorder"
-  ],
-  "veteran": null,
-  "care_team": "Brooklyn Community Treatment",
-  "contact_last_updated": "2023-03-21",
-  "flags": {
-   "recent_crisis_visit": false,
-   "substance_use": false,
-   "supported_housing": false
-  }
- },
- {
-  "id": "SYN-1148",
-  "name": "C.N.",
-  "age": 42,
-  "zip": "11228",
-  "program": "Outpatient clinic",
-  "diagnoses": [
-   "F43.10 PTSD",
-   "F41.1 Generalized anxiety disorder"
-  ],
-  "veteran": false,
-  "care_team": "Brooklyn Clinic 5",
-  "contact_last_updated": "2023-05-16",
-  "flags": {
-   "recent_crisis_visit": false,
-   "substance_use": false,
    "supported_housing": false
   }
  }

@@ -21,7 +21,8 @@ they are in an area where conditions are genuinely extreme.
 from __future__ import annotations
 
 import os
-from datetime import datetime, timezone
+import time
+from datetime import datetime
 
 from . import vitals, workflow
 from .store import get_store
@@ -43,15 +44,21 @@ STAGES = [
 FINAL_NOTE = "911 is never dialled automatically. A clinician or the client decides that."
 
 
-def _age_seconds(iso: str) -> float:
-    return (datetime.now(timezone.utc) - datetime.fromisoformat(iso)).total_seconds()
+_opened_at: dict[str, float] = {}
+
+
+def _age_seconds(esc_or_iso) -> float:
+    """Wall-clock age of a request. Stamps are on scenario time, so we track our own."""
+    key = esc_or_iso["escalation_id"] if isinstance(esc_or_iso, dict) else esc_or_iso
+    started = _opened_at.setdefault(key, time.monotonic())
+    return time.monotonic() - started
 
 
 def stage_for(esc: dict) -> int:
     """How far the ladder has climbed: 0 while someone is answering, up to 2."""
     if esc["status"] == "answered" or esc.get("cancelled"):
         return 0
-    return min(len(STAGES) - 1, int(_age_seconds(esc["created_at"]) // STAGE_SECONDS))
+    return min(len(STAGES) - 1, int(_age_seconds(esc) // STAGE_SECONDS))
 
 
 def advance(esc: dict) -> dict:

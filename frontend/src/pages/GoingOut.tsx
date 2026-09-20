@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import { useEffect, useMemo, useState } from "react";
-import { CircleMarker, MapContainer, Polyline, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { Link, useParams } from "react-router-dom";
 import { AddressSearch } from "../components/AddressSearch";
 import { Icon } from "../components/Icon";
@@ -36,6 +36,15 @@ function Recentre({ point, zoom = 14 }: { point: [number, number] | undefined; z
   useEffect(() => {
     if (point) map.flyTo(point, zoom, { duration: 0.6 });
   }, [point, zoom, map]);
+  return null;
+}
+
+/** Frames the whole walk once a route comes back. */
+function FitRoute({ points }: { points: [number, number][] | undefined }) {
+  const map = useMap();
+  useEffect(() => {
+    if (points && points.length > 1) map.fitBounds(points, { padding: [34, 34], maxZoom: 15 });
+  }, [points, map]);
   return null;
 }
 
@@ -141,14 +150,38 @@ export function GoingOut() {
             <PickDestination onPick={(p) => { setDest(p); setDestLabel(undefined); }} />
             <Recentre point={dest ?? from} zoom={dest ? 13 : 14} />
             <ResizeWatcher trigger={`${dest?.join(",") ?? ""}-${answer?.as_of ?? ""}`} />
-            {from && <CircleMarker center={from} radius={7} pathOptions={{ color: c.surface, weight: 2, fillColor: c.air, fillOpacity: 1 }} />}
-            {dest && <CircleMarker center={dest} radius={7} pathOptions={{ color: c.surface, weight: 2, fillColor: c.heat, fillOpacity: 1 }} />}
-            {answer && answer.is_detour && (
-              <Polyline positions={answer.direct.geometry} pathOptions={{ color: c.muted, weight: 3, dashArray: "6 6" }} />
+            {from && (
+              <CircleMarker center={from} radius={8} pathOptions={{ color: c.surface, weight: 3, fillColor: c.air, fillOpacity: 1 }}>
+                <Tooltip permanent direction="top" className="zip-tip">Start</Tooltip>
+              </CircleMarker>
             )}
-            {answer && <Polyline positions={answer.recommended.geometry} pathOptions={{ color: c.noise, weight: 5 }} />}
+            {dest && (
+              <CircleMarker center={dest} radius={8} pathOptions={{ color: c.surface, weight: 3, fillColor: c.heat, fillOpacity: 1 }}>
+                <Tooltip permanent direction="top" className="zip-tip">Destination</Tooltip>
+              </CircleMarker>
+            )}
+            {answer?.is_detour && (
+              <Polyline positions={answer.direct.geometry}
+                pathOptions={{ color: c.muted, weight: 4, opacity: 0.7, dashArray: "2 8", lineCap: "round" }} />
+            )}
+            {answer && (
+              <>
+                <Polyline positions={answer.recommended.geometry}
+                  pathOptions={{ color: c.surface, weight: 11, opacity: 0.95, lineCap: "round", lineJoin: "round" }} />
+                <Polyline positions={answer.recommended.geometry}
+                  pathOptions={{ color: c.noise, weight: 6, opacity: 1, lineCap: "round", lineJoin: "round" }} />
+              </>
+            )}
+            <FitRoute points={answer?.recommended.geometry} />
           </MapContainer>
         </MapFrame>
+
+        {answer && (
+          <div className="row small" style={{ gap: 14, marginTop: 10 }}>
+            <span className="key"><span className="key-line" style={{ background: c.noise, height: 4 }} /> Suggested walk</span>
+            {answer.is_detour && <span className="key"><span className="key-line" style={{ background: c.muted }} /> Direct walk</span>}
+          </div>
+        )}
 
         <div className="row" style={{ marginTop: 12, justifyContent: "space-between" }}>
           <span className="small muted">

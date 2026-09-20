@@ -23,13 +23,29 @@ COMORBID = [("F10.20 Alcohol use disorder", 0.22), ("F11.20 Opioid use disorder"
 SUD_CODES = ("F10.20", "F11.20")
 LETTERS = "ABCDEFGHJKLMNPRSTVW"
 
-# The demo client the walkthrough follows, in Long Island City.
-DEMO = {
-    "id": "SYN-0142", "name": "R.M.", "age": 34, "zip": "11101", "program": "ACT",
-    "diagnoses": ["F43.10 PTSD", "F10.20 Alcohol use disorder"], "veteran": True,
-    "care_team": "LIC ACT Team 2", "contact_last_updated": "2022-06-14",
-    "flags": {"recent_crisis_visit": True, "substance_use": True, "supported_housing": False},
-}
+# The three clients the walkthrough follows. Each carries a different story:
+# a veteran under the fireworks, an older client with no air conditioning, and a
+# younger client whose team is already on it.
+DEMO = [
+    {
+        "id": "SYN-0142", "name": "R.M.", "age": 34, "zip": "11101", "program": "ACT",
+        "diagnoses": ["F43.10 PTSD", "F10.20 Alcohol use disorder"], "veteran": True,
+        "care_team": "LIC ACT Team 2", "contact_last_updated": "2022-06-14",
+        "flags": {"recent_crisis_visit": True, "substance_use": True, "supported_housing": False},
+    },
+    {
+        "id": "SYN-0143", "name": "D.K.", "age": 67, "zip": "10457", "program": "Supported housing",
+        "diagnoses": ["F43.12 PTSD, chronic", "F33.1 Major depressive disorder"], "veteran": False,
+        "care_team": "Bronx Supported Housing 2", "contact_last_updated": "2023-05-02",
+        "flags": {"recent_crisis_visit": False, "substance_use": False, "supported_housing": True},
+    },
+    {
+        "id": "SYN-0144", "name": "J.P.", "age": 29, "zip": "11104", "program": "Outpatient clinic",
+        "diagnoses": ["F43.10 PTSD", "F41.1 Generalized anxiety disorder"], "veteran": True,
+        "care_team": "Sunnyside Clinic 3", "contact_last_updated": "2023-06-20",
+        "flags": {"recent_crisis_visit": False, "substance_use": False, "supported_housing": False},
+    },
+]
 
 
 def pick(rng: random.Random, options: list[tuple[str, float]]) -> str:
@@ -53,8 +69,8 @@ def build_roster(s: Scenario, n: int = 150, seed: int = 20260919) -> list[dict]:
     weights = [max(1, max((hvi.get(m, 1) for m in z["members"]), default=1)) for z in zips]
     scenario_day = s.start.date()
 
-    people = [DEMO | {"_borough": "Queens"}]
-    for i in range(n - 1):
+    people = [dict(d) for d in DEMO]
+    for i in range(n - len(DEMO)):
         z = rng.choices(zips, weights)[0]
         program = pick(rng, PROGRAMS)
         dx = [pick(rng, PTSD)]

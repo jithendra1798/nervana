@@ -298,6 +298,7 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
   background: none; border: 0; border-bottom: 1px solid var(--border); color: var(--ink); cursor: pointer;
 }
 .search-item:last-child { border-bottom: 0; }
+.search-note { padding: 9px 12px; font-size: 13px; }
 .search-item:hover { background: var(--hover); }
 
 .map-box { position: relative; }

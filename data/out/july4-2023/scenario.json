@@ -7,7 +7,7 @@
  "step": "PT1H",
  "geo_level": "MODZCTA",
  "is_fixture": false,
- "roster_note": "150 synthetic clients with PTSD · 24 veterans · 13 with a crisis visit in the last 30 days",
+ "roster_note": "150 synthetic clients with PTSD · 25 veterans · 13 with a crisis visit in the last 30 days",
  "weights": {
   "noise": 0.5,
   "heat": 0.3,

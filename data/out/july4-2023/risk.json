@@ -924,6 +924,42 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-04T20:00:00-04:00",
+   "level": "watch",
+   "score": 0.78,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "23 noise complaints in ZIP 10457 in the last 2 hours (7.3× a usual night), mostly loud street noise",
+     "contribution": 0.527,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 90.3 µg/m³ (air quality index 175)",
+     "contribution": 0.181,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "heat",
+     "label": "Feels like 84°F, on a day that stays below the heat threshold",
+     "contribution": 0.027,
+     "source": "Open-Meteo + NOAA"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 23 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "Feels-like temperature comes from a weather model, one point per borough",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1122",
    "as_of": "2023-07-04T20:00:00-04:00",
    "level": "watch",
@@ -1273,42 +1309,6 @@
      "Exposure is estimated for all of ZIP 10306, not this person's block",
      "Noise comes from 12 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 31.4 km away",
-     "Feels-like temperature comes from a weather model, one point per borough",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1148",
-   "as_of": "2023-07-04T20:00:00-04:00",
-   "level": "watch",
-   "score": 0.67,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "29 noise complaints in ZIP 11228 in the last 2 hours (16.8× a usual night), mostly loud street noise",
-     "contribution": 0.55,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 28.2 µg/m³ (air quality index 87)",
-     "contribution": 0.073,
-     "source": "EPA monitors"
-    },
-    {
-     "trigger": "heat",
-     "label": "Feels like 87°F, on a day that stays below the heat threshold",
-     "contribution": 0.052,
-     "source": "Open-Meteo + NOAA"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "high",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11228, not this person's block",
-     "Noise comes from 29 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 21.3 km away",
      "Feels-like temperature comes from a weather model, one point per borough",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
@@ -2622,6 +2622,41 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-04T21:00:00-04:00",
+   "level": "watch",
+   "score": 0.83,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "29 noise complaints in ZIP 10457 in the last 2 hours (8.2× a usual night), mostly loud street noise",
+     "contribution": 0.55,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 128.5 µg/m³ (air quality index 204)",
+     "contribution": 0.214,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Age 65 or older",
+     "contribution": 0.032,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 29 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1013",
    "as_of": "2023-07-04T21:00:00-04:00",
    "level": "watch",
@@ -2864,6 +2899,41 @@
      "Exposure is estimated for all of ZIP 11221, not this person's block",
      "Noise comes from 24 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 10.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
+   "patient_id": "SYN-0144",
+   "as_of": "2023-07-04T21:00:00-04:00",
+   "level": "watch",
+   "score": 0.8,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "7 noise complaints in ZIP 11104 in the last 2 hours (5.5× a usual night), mostly illegal fireworks",
+     "contribution": 0.452,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 128.5 µg/m³ (air quality index 204)",
+     "contribution": 0.214,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Veteran: fireworks and gunfire-like sounds are common triggers",
+     "contribution": 0.113,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "medium",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 11104, not this person's block",
+     "Noise comes from 7 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 8.1 km away",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -3689,42 +3759,6 @@
      "Air quality is from the nearest EPA monitor, 16.4 km away",
      "Feels-like temperature comes from a weather model, one point per borough",
      "Contact details last updated 2022-05-13, over a year ago",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1148",
-   "as_of": "2023-07-04T21:00:00-04:00",
-   "level": "watch",
-   "score": 0.75,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "44 noise complaints in ZIP 11228 in the last 2 hours (27.7× a usual night), mostly loud street noise",
-     "contribution": 0.55,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 85.7 µg/m³ (air quality index 172)",
-     "contribution": 0.177,
-     "source": "EPA monitors"
-    },
-    {
-     "trigger": "heat",
-     "label": "Feels like 83°F, on a day that stays below the heat threshold",
-     "contribution": 0.019,
-     "source": "Open-Meteo + NOAA"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "high",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11228, not this person's block",
-     "Noise comes from 44 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 21.3 km away",
-     "Feels-like temperature comes from a weather model, one point per borough",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -6146,6 +6180,41 @@
    }
   },
   {
+   "patient_id": "SYN-0144",
+   "as_of": "2023-07-04T22:00:00-04:00",
+   "level": "act",
+   "score": 0.9,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "10 noise complaints in ZIP 11104 in the last 2 hours (7.9× a usual night), mostly illegal fireworks",
+     "contribution": 0.547,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 93.3 µg/m³ (air quality index 177)",
+     "contribution": 0.184,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Veteran: fireworks and gunfire-like sounds are common triggers",
+     "contribution": 0.137,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "medium",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 11104, not this person's block",
+     "Noise comes from 10 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 8.1 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1003",
    "as_of": "2023-07-04T22:00:00-04:00",
    "level": "act",
@@ -7345,6 +7414,41 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-04T22:00:00-04:00",
+   "level": "watch",
+   "score": 0.78,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "37 noise complaints in ZIP 10457 in the last 2 hours (8.9× a usual night), mostly loud street noise",
+     "contribution": 0.55,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 93.3 µg/m³ (air quality index 177)",
+     "contribution": 0.184,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Age 65 or older",
+     "contribution": 0.028,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 37 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1008",
    "as_of": "2023-07-04T22:00:00-04:00",
    "level": "watch",
@@ -8373,42 +8477,6 @@
      "Air quality is from the nearest EPA monitor, 16.4 km away",
      "Feels-like temperature comes from a weather model, one point per borough",
      "Contact details last updated 2022-05-13, over a year ago",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1148",
-   "as_of": "2023-07-04T22:00:00-04:00",
-   "level": "watch",
-   "score": 0.75,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "27 noise complaints in ZIP 11228 in the last 2 hours (19.7× a usual night), mostly illegal fireworks",
-     "contribution": 0.55,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 104.7 µg/m³ (air quality index 185)",
-     "contribution": 0.194,
-     "source": "EPA monitors"
-    },
-    {
-     "trigger": "heat",
-     "label": "Feels like 82°F, on a day that stays below the heat threshold",
-     "contribution": 0.01,
-     "source": "Open-Meteo + NOAA"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "high",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11228, not this person's block",
-     "Noise comes from 27 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 21.3 km away",
-     "Feels-like temperature comes from a weather model, one point per borough",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -11522,6 +11590,41 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-04T23:00:00-04:00",
+   "level": "watch",
+   "score": 0.75,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "45 noise complaints in ZIP 10457 in the last 2 hours (10.6× a usual night), mostly loud street noise",
+     "contribution": 0.55,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 87.1 µg/m³ (air quality index 173)",
+     "contribution": 0.178,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Age 65 or older",
+     "contribution": 0.027,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 45 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1034",
    "as_of": "2023-07-04T23:00:00-04:00",
    "level": "watch",
@@ -11623,42 +11726,6 @@
      "Exposure is estimated for all of ZIP 10454, not this person's block",
      "Noise comes from 18 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 1.7 km away",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1148",
-   "as_of": "2023-07-04T23:00:00-04:00",
-   "level": "watch",
-   "score": 0.75,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "9 noise complaints in ZIP 11228 in the last 2 hours (6.8× a usual night), mostly illegal fireworks",
-     "contribution": 0.505,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 159.4 µg/m³ (air quality index 235)",
-     "contribution": 0.225,
-     "source": "EPA monitors"
-    },
-    {
-     "trigger": "heat",
-     "label": "Feels like 83°F, on a day that stays below the heat threshold",
-     "contribution": 0.015,
-     "source": "Open-Meteo + NOAA"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "medium",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11228, not this person's block",
-     "Noise comes from 9 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 21.3 km away",
-     "Feels-like temperature comes from a weather model, one point per borough",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -12709,6 +12776,41 @@
      "Exposure is estimated for all of ZIP 10039, not this person's block",
      "Noise comes from 12 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
+   "patient_id": "SYN-0144",
+   "as_of": "2023-07-04T23:00:00-04:00",
+   "level": "watch",
+   "score": 0.63,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "5 noise complaints in ZIP 11104 in the last 2 hours (3.9× a usual night), mostly illegal fireworks",
+     "contribution": 0.359,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 87.1 µg/m³ (air quality index 173)",
+     "contribution": 0.178,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Veteran: fireworks and gunfire-like sounds are common triggers",
+     "contribution": 0.09,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "medium",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 11104, not this person's block",
+     "Noise comes from 5 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 8.1 km away",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -14516,6 +14618,41 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-05T00:00:00-04:00",
+   "level": "watch",
+   "score": 0.77,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "41 noise complaints in ZIP 10457 in the last 2 hours (10.1× a usual night), mostly loud street noise",
+     "contribution": 0.55,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 105.8 µg/m³ (air quality index 186)",
+     "contribution": 0.195,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Age 65 or older",
+     "contribution": 0.029,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 41 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1020",
    "as_of": "2023-07-05T00:00:00-04:00",
    "level": "watch",
@@ -15102,42 +15239,6 @@
      "Exposure is estimated for all of ZIP 10454, not this person's block",
      "Noise comes from 12 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 1.7 km away",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1147",
-   "as_of": "2023-07-05T00:00:00-04:00",
-   "level": "watch",
-   "score": 0.72,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "14 noise complaints in ZIP 11222 in the last 2 hours (7.6× a usual night), mostly illegal fireworks",
-     "contribution": 0.537,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 47.9 µg/m³ (air quality index 132)",
-     "contribution": 0.131,
-     "source": "EPA monitors"
-    },
-    {
-     "trigger": "heat",
-     "label": "Feels like 84°F",
-     "contribution": 0.048,
-     "source": "Open-Meteo + NOAA"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "medium",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11222, not this person's block",
-     "Noise comes from 14 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 4.2 km away",
-     "Feels-like temperature comes from a weather model, one point per borough",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -17156,6 +17257,41 @@
    }
   },
   {
+   "patient_id": "SYN-0143",
+   "as_of": "2023-07-05T01:00:00-04:00",
+   "level": "watch",
+   "score": 0.74,
+   "factors": [
+    {
+     "trigger": "noise",
+     "label": "28 noise complaints in ZIP 10457 in the last 2 hours (7.9× a usual night), mostly loud street noise",
+     "contribution": 0.545,
+     "source": "NYC 311"
+    },
+    {
+     "trigger": "air",
+     "label": "Fine particles at 72.6 µg/m³ (air quality index 163)",
+     "contribution": 0.165,
+     "source": "EPA monitors"
+    },
+    {
+     "trigger": "patient",
+     "label": "Age 65 or older",
+     "contribution": 0.025,
+     "source": "Client record"
+    }
+   ],
+   "uncertainty": {
+    "confidence": "high",
+    "caveats": [
+     "Exposure is estimated for all of ZIP 10457, not this person's block",
+     "Noise comes from 28 311 complaints, which lag and depend on who reports",
+     "Air quality is from the nearest EPA monitor, 3.3 km away",
+     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
+    ]
+   }
+  },
+  {
    "patient_id": "SYN-1010",
    "as_of": "2023-07-05T01:00:00-04:00",
    "level": "watch",
@@ -17339,35 +17475,6 @@
      "Noise comes from 59 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 0.4 km away",
      "Contact details last updated 2021-03-05, over a year ago",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1147",
-   "as_of": "2023-07-05T01:00:00-04:00",
-   "level": "watch",
-   "score": 0.73,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "17 noise complaints in ZIP 11222 in the last 2 hours (11.2× a usual night), mostly illegal fireworks",
-     "contribution": 0.55,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 87.0 µg/m³ (air quality index 173)",
-     "contribution": 0.178,
-     "source": "EPA monitors"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "high",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11222, not this person's block",
-     "Noise comes from 17 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 4.2 km away",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }
@@ -18812,35 +18919,6 @@
      "Noise comes from 11 311 complaints, which lag and depend on who reports",
      "Air quality is from the nearest EPA monitor, 10.2 km away",
      "Contact details last updated 2022-05-13, over a year ago",
-     "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
-    ]
-   }
-  },
-  {
-   "patient_id": "SYN-1147",
-   "as_of": "2023-07-05T02:00:00-04:00",
-   "level": "watch",
-   "score": 0.69,
-   "factors": [
-    {
-     "trigger": "noise",
-     "label": "9 noise complaints in ZIP 11222 in the last 2 hours (6.9× a usual night), mostly illegal fireworks",
-     "contribution": 0.512,
-     "source": "NYC 311"
-    },
-    {
-     "trigger": "air",
-     "label": "Fine particles at 92.1 µg/m³ (air quality index 177)",
-     "contribution": 0.183,
-     "source": "EPA monitors"
-    }
-   ],
-   "uncertainty": {
-    "confidence": "medium",
-    "caveats": [
-     "Exposure is estimated for all of ZIP 11222, not this person's block",
-     "Noise comes from 9 311 complaints, which lag and depend on who reports",
-     "Air quality is from the nearest EPA monitor, 4.2 km away",
      "No pharmacy data: medication effects, such as SSRIs in heat, are not assessed"
     ]
    }

@@ -66,7 +66,7 @@ export function AddressSearch({
       </div>
       {open && (hits.length > 0 || error) && (
         <div className="search-results">
-          {error && <div className="search-item muted">{error}</div>}
+          {error && <div className="search-note muted">{error}</div>}
           {hits.map((h) => (
             <button key={`${h.lat},${h.lon}`} type="button" className="search-item"
               onClick={() => { onPick(h); setOpen(false); setQ(h.label); }}>

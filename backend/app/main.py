@@ -29,6 +29,17 @@ app.add_middleware(
 BANDS = ((0.5, "high"), (0.25, "moderate"))
 
 
+@app.middleware("http")
+async def scenario_clock(request, call_next):
+    """Stamp demo events with the replay hour the user is looking at."""
+    as_of = request.query_params.get("as_of")
+    try:
+        workflow.set_clock(get_store().resolve(as_of).isoformat())
+    except Exception:
+        pass
+    return await call_next(request)
+
+
 def band_of(severity: float) -> str:
     return next((name for edge, name in BANDS if severity >= edge), "low")
 

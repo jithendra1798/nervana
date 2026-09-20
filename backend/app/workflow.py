@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -39,13 +39,44 @@ def _save() -> None:
 _state: State = _load()
 
 
+# The demo replays July 4 2023, so actions should read as that evening rather than
+# today. Each event takes the next minute, which also keeps them in order.
+_clock: dict[str, Any] = {"base": None, "ticks": 0}
+
+
+def set_clock(iso: str | None) -> None:
+    if iso and iso != _clock["base"]:
+        _clock["base"] = iso
+        _clock["ticks"] = 0
+
+
 def now() -> str:
+    if _clock["base"]:
+        _clock["ticks"] += 1
+        return (datetime.fromisoformat(_clock["base"]) + timedelta(minutes=_clock["ticks"])).isoformat(timespec="seconds")
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+# What the three demo clients told us about themselves, so a reset starts the
+# walkthrough ready rather than blank.
+DEMO_PROFILES = {
+    "SYN-0142": {"triggers": ["Fireworks", "Sirens"], "helps": ["Noise-cancelling headphones", "Calling someone", "A quiet room"],
+                 "home": {"air_conditioning": True, "quiet_room": True}, "support_person": "my sister Dana",
+                 "safe_places": ["the library on Jackson Ave"], "share_with_care_team": True},
+    "SYN-0143": {"triggers": ["Heat", "Sirens"], "helps": ["Cold water", "Music or TV"],
+                 "home": {"air_conditioning": False, "quiet_room": False}, "support_person": "my son Marcus",
+                 "safe_places": ["the senior center on Tremont Ave"], "share_with_care_team": True},
+    "SYN-0144": {"triggers": ["Fireworks", "Crowds"], "helps": ["Earplugs", "My dog", "Grounding breathing"],
+                 "home": {"air_conditioning": True, "quiet_room": False}, "support_person": "my partner Alex",
+                 "safe_places": [], "share_with_care_team": False},
+}
 
 
 def reset() -> None:
     global _state
     _state = _empty()
+    for pid, profile in DEMO_PROFILES.items():
+        _state["profiles"][pid] = {**profile, "patient_id": pid, "updated_at": now()}
     _save()
 
 
