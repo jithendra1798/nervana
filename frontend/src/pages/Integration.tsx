@@ -111,7 +111,7 @@ export function Integration() {
 
           <section className="card">
             <div className="card-head"><h2>FHIR RiskAssessment</h2><span className="small muted">R4</span></div>
-            <pre style={{ margin: 0, maxHeight: 620, overflow: "auto", fontSize: 12, lineHeight: 1.5, color: "var(--ink-2)" }}>
+            <pre style={{ margin: 0, maxHeight: 620, overflow: "auto", fontSize: 12, lineHeight: 1.5, color: "var(--ink-2)", whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
               {JSON.stringify(preview.data.fhir, null, 2)}
             </pre>
           </section>

@@ -211,6 +211,8 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 .table tbody tr.clickable:hover td { background: var(--hover); }
 .table .num { text-align: right; font-variant-numeric: tabular-nums; }
 .table-wrap { overflow-x: auto; }
+.table-wrap > .table { min-width: 680px; }
+@media (max-width: 560px) { .page { padding: 16px; } }
 .person { font-weight: 600; }
 .stale { opacity: 0.55; transition: opacity 0.15s; }
 

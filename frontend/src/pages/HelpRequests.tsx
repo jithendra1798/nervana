@@ -67,14 +67,22 @@ export function HelpRequests() {
               </button>
             ))}
           </div>
-          <Detail key={current.escalation_id} esc={current} onDone={list.reload} />
+          <Detail key={current.escalation_id} esc={current} onDone={(answeredId) => {
+            // Stay with the request the clinician just answered instead of letting it
+            // vanish from the Open list.
+            if (answeredId) {
+              setTab("answered");
+              setSelected(answeredId);
+            }
+            list.reload();
+          }} />
         </div>
       )}
     </div>
   );
 }
 
-function Detail({ esc, onDone }: { esc: Escalation; onDone: () => void }) {
+function Detail({ esc, onDone }: { esc: Escalation; onDone: (answeredId?: string) => void }) {
   const top = esc.packet.factors.find((f) => f.trigger !== "patient")?.trigger ?? "noise";
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -85,7 +93,7 @@ function Detail({ esc, onDone }: { esc: Escalation; onDone: () => void }) {
     setErr(undefined);
     try {
       await api.respond(esc.escalation_id, { text: text.trim(), clinician: CLINICIAN });
-      onDone();
+      onDone(esc.escalation_id);
     } catch (e) {
       setErr(e as Error);
     } finally {

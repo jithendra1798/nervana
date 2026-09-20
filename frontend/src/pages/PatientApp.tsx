@@ -73,10 +73,10 @@ export function PatientApp() {
     your_profile: "Because of what you told us",
     standard_tips: "General advice",
   };
-  const groups = (["care_team", "your_profile", "standard_tips"] as const)
-    .map((source) => [LABELS[source], items.filter((i) => i.source === source)] as const)
-    .filter(([, list]) => list.length > 0);
   const yours = r.tips.find((t) => t.source === "your_profile");
+  const groups = (["care_team", "your_profile", "standard_tips"] as const)
+    .map((source) => [LABELS[source], items.filter((i) => i.source === source && i.text !== yours?.text)] as const)
+    .filter(([, list]) => list.length > 0);
 
   return (
     <div className="phone-stage">
