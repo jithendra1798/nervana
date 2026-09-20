@@ -50,6 +50,7 @@ Two windows side by side: care team on the left, a client's phone on the right (
 | 6 | Detail | Point at confidence and caveats | "It says how sure it is. Low, because his contact details are three years old. And it says what we do not have: no pharmacy data." |
 | 7 | Detail | Scroll to **Vitals** | "Heart rate 87 against his own usual 73, variability down, sleep restless. It tracks noise today at 0.77. The wearable is simulated and labelled: the dataset has none, and in production he connects his own." |
 | 8 | Detail | **Log outreach** | "One alert for the whole event, so he is not flagged again at 10, 11 and midnight." |
+| 8b | Phone | Open **Going out**, search a destination, **Check the walk** | "His own map: the shading is how loud each area is right now, the blue line is the walk, and the card underneath says what it runs through and whether waiting helps. Same data as the care team's map, in the form anyone already knows how to read." |
 | 9 | Phone | Tap **Breathe with me** | "Reading is hard mid-flashback, so it reads the grounding exercise aloud, paced. The phone's own voice: no network, nothing leaves the device." |
 | 10 | Phone | Tap **I need help** | "Crisis lines first, always: 988, press 1 for veterans. Then, and only with his consent, the care team." |
 | 11 | Phone | Tick consent, add a note, **Send** | "Nothing reaches the team unless he agrees." |

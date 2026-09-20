@@ -1,6 +1,6 @@
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 import { useEffect, useMemo, useState } from "react";
-import { CircleMarker, MapContainer, Polyline, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
+import { CircleMarker, GeoJSON, MapContainer, Polyline, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { Link, useParams } from "react-router-dom";
 import { AddressSearch } from "../components/AddressSearch";
 import { Icon } from "../components/Icon";
@@ -43,7 +43,13 @@ function Recentre({ point, zoom = 14 }: { point: [number, number] | undefined; z
 function FitRoute({ points }: { points: [number, number][] | undefined }) {
   const map = useMap();
   useEffect(() => {
-    if (points && points.length > 1) map.fitBounds(points, { padding: [34, 34], maxZoom: 15 });
+    if (!points || points.length < 2) return;
+    // The card slides in underneath, so settle the size first, then frame the walk.
+    const t = setTimeout(() => {
+      map.invalidateSize();
+      map.fitBounds(points, { padding: [26, 26], maxZoom: 15 });
+    }, 260);
+    return () => clearTimeout(t);
   }, [points, map]);
   return null;
 }
@@ -59,6 +65,8 @@ export function GoingOut() {
   const c = usePalette();
   const { resolved } = useTheme();
   const risk = useApi(() => (asOf ? api.patientRisk(id, asOf) : Promise.resolve(undefined)), [id, asOf]);
+  const heat = useApi(() => (asOf ? api.map(asOf, "noise") : Promise.resolve(undefined)), [asOf]);
+  const [shapes, setShapes] = useState<FeatureCollection<Geometry, Props>>();
   const [home, setHome] = useState<[number, number]>();
   const [start, setStart] = useState<[number, number]>();
   const [startLabel, setStartLabel] = useState("your ZIP");
@@ -71,15 +79,24 @@ export function GoingOut() {
 
   const zip = risk.data?.patient.zip;
   useEffect(() => {
-    if (!zip) return;
     fetch("/modzcta.geojson")
       .then((r) => r.json())
-      .then((geo: FeatureCollection<Geometry, Props>) => {
-        const f = geo.features.find((x) => x.properties.MODZCTA === zip);
-        const c2 = f && centroid(f);
-        if (c2) setHome(c2);
-      });
-  }, [zip]);
+      .then((geo: FeatureCollection<Geometry, Props>) => setShapes(geo));
+  }, []);
+  useEffect(() => {
+    if (!zip || !shapes) return;
+    const f = shapes.features.find((x) => x.properties.MODZCTA === zip);
+    const c2 = f && centroid(f);
+    if (c2) setHome(c2);
+  }, [zip, shapes]);
+
+  // How loud each area is right now, painted under the route.
+  const levels = useMemo(() => new Map((heat.data?.zips ?? []).map((z) => [z.zip, z.severity])), [heat.data]);
+  const heatStyle = (f?: Feature<Geometry, Props>) => {
+    const v = f ? levels.get(f.properties.MODZCTA) : undefined;
+    const step = v == null ? -1 : [0.2, 0.4, 0.6, 0.8].filter((b) => v >= b).length;
+    return { stroke: false, fillColor: step < 0 ? c.noData : c.seq[step], fillOpacity: v == null ? 0.12 : 0.45 };
+  };
 
   const from = start ?? home;
 
@@ -127,30 +144,27 @@ export function GoingOut() {
   return (
     <div className="phone-stage">
       <div className="phone" style={{ maxWidth: 460 }}>
-        <div className="phone-head">
-          <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
-          <h1 style={{ marginTop: 8 }}>Going out?</h1>
-          <p className="subtle small" style={{ marginTop: 4 }}>Search or tap where you are going.</p>
-        </div>
-        <div className="phone-body">
-
-        <div className="stack" style={{ marginTop: 14 }}>
+        <div className="phone-head" style={{ paddingBottom: 8 }}>
           <div className="row" style={{ justifyContent: "space-between" }}>
-            <span className="small muted"><Icon name="pin" size={13} /> Starting from {startLabel}</span>
+            <Link to={`/me/${id}`} className="btn ghost" style={{ marginLeft: -10 }}><Icon name="back" /> Back</Link>
             <button className="btn ghost small" type="button" onClick={useMyLocation} disabled={locating}>
-              {locating ? "Locating…" : "Use my location"}
+              <Icon name="pin" size={14} /> {locating ? "Locating…" : startLabel === "your location" ? "Using your location" : "Use my location"}
             </button>
           </div>
           <AddressSearch width="100%" placeholder="Where are you going?"
             onPick={(hit) => { setDest([hit.lat, hit.lon]); setDestLabel(hit.label); }} />
         </div>
 
-        <MapFrame height={280} label="Your walk">
+        <div className="map-first">
+        <MapFrame height="100%" label="Your walk">
           <MapContainer center={from ?? [40.745, -73.95]} zoom={12} style={{ height: "100%", width: "100%" }}>
             <TileLayer key={resolved} url={c.tiles} attribution="Tiles: Esri" maxZoom={16} />
+            {shapes && heat.data && (
+              <GeoJSON key={`heat-${heat.data.as_of}-${resolved}`} data={shapes} style={heatStyle as never} interactive={false} />
+            )}
             <PickDestination onPick={(p) => { setDest(p); setDestLabel(undefined); }} />
             <Recentre point={dest ?? from} zoom={dest ? 13 : 14} />
-            <ResizeWatcher trigger={`${dest?.join(",") ?? ""}-${answer?.as_of ?? ""}`} />
+            <ResizeWatcher trigger={`${dest?.join(",") ?? ""}-${answer?.recommended.distance_m ?? 0}-${busy}`} />
             {from && (
               <CircleMarker center={from} radius={8} pathOptions={{ color: c.surface, weight: 3, fillColor: c.air, fillOpacity: 1 }}>
                 <Tooltip permanent direction="top" className="zip-tip">Start</Tooltip>
@@ -176,6 +190,14 @@ export function GoingOut() {
             <FitRoute points={answer?.recommended.geometry} />
           </MapContainer>
         </MapFrame>
+        <div className="map-legend">
+          <span className="tiny muted">Quiet</span>
+          <span className="legend-scale" style={{ width: 70 }}>{c.seq.map((x) => <span key={x} style={{ background: x }} />)}</span>
+          <span className="tiny muted">Loud</span>
+        </div>
+        </div>
+
+        <div className="sheet">
 
         {answer && (
           <div className="row small" style={{ gap: 14, marginTop: 10 }}>

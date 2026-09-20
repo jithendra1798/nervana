@@ -311,6 +311,20 @@ select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-
 }
 .map-full-btn:hover { background: var(--hover); }
 
+.map-first { flex: 1; min-height: 240px; display: flex; flex-direction: column; padding: 0 14px; }
+.map-first .map-box { flex: 1; }
+.map-legend { display: flex; align-items: center; gap: 8px; padding: 6px 2px 0; }
+.sheet {
+  border-top: 1px solid var(--border); background: var(--surface);
+  border-radius: 18px 18px 0 0; padding: 12px 18px 18px;
+  max-height: 46%; overflow-y: auto; box-shadow: 0 -8px 20px rgba(0,0,0,0.06);
+}
+.sheet::before {
+  content: ""; display: block; width: 36px; height: 4px; border-radius: 2px;
+  background: var(--grid); margin: 0 auto 10px;
+}
+.sheet h2 { font-size: 15px; }
+
 .hours { display: flex; align-items: flex-end; gap: 3px; height: 70px; }
 .hour-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
 .hour-bar { width: 100%; border-radius: 3px 3px 0 0; }
