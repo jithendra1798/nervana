@@ -137,7 +137,7 @@ export function PatientApp() {
           <h2>Your plan</h2>
           <div className="row" style={{ gap: 10 }}>
             {speech.supported && items.length > 0 && (
-              <button className="btn ghost small" onClick={() => (speech.speaking ? speech.stop() : speech.speak([h.body, ...items.slice(0, 5).map((i) => i.text)], { gap: 1 }))}>
+              <button className="btn ghost small" onClick={() => (speech.speaking ? speech.stop() : speech.speak([h.body, ...items.slice(0, 5).map((i) => i.text)], { gapMs: 500 }))}>
                 <Icon name={speech.speaking ? "stop" : "sound"} size={15} /> {speech.speaking ? "Stop" : "Listen"}
               </button>
             )}
@@ -214,7 +214,7 @@ function HelpFlow({ patientId, careTeam, onClose }: { patientId: string; careTea
 
       {speech.supported && (
         <button className="btn" style={{ width: "100%", marginTop: 10 }}
-          onClick={() => (speech.speaking ? speech.stop() : speech.speak(GROUNDING_LINES, { rate: 0.82, gap: 1 }))}>
+          onClick={() => (speech.speaking ? speech.stop() : speech.speak(GROUNDING_LINES, { rate: 0.8, gapMs: 1600 }))}>
           <Icon name={speech.speaking ? "stop" : "sound"} /> {speech.speaking ? "Stop" : "Breathe with me"}
         </button>
       )}

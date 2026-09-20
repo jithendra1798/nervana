@@ -4,6 +4,7 @@ import { Icon } from "../components/Icon";
 import { ErrorBox, Loading } from "../components/States";
 import { api } from "../lib/api";
 import { useApi } from "../lib/hooks";
+import { useSpeech } from "../lib/speech";
 import type { Profile } from "../lib/types";
 
 const EMPTY: Profile = {
@@ -33,6 +34,8 @@ export function AboutYou() {
   const loaded = useApi(() => api.profile(id), [id]);
   const [form, setForm] = useState<Profile>(EMPTY);
   const [places, setPlaces] = useState("");
+  const speech = useSpeech();
+  const [voice, setVoice] = useState<string>();
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [err, setErr] = useState<Error>();
@@ -104,6 +107,22 @@ export function AboutYou() {
         <input type="text" style={{ width: "100%" }} placeholder="e.g. the library on Jackson Ave"
           value={places} onChange={(e) => setPlaces(e.target.value)} />
         <p className="tiny muted" style={{ marginTop: 6 }}>Separate several with commas.</p>
+
+        {speech.supported && speech.voices.length > 0 && (
+          <>
+            <h2 style={{ margin: "20px 0 8px" }}>How it sounds</h2>
+            <div className="row" style={{ gap: 8 }}>
+              <select value={voice ?? speech.current ?? ""} style={{ flex: 1 }}
+                onChange={(e) => { setVoice(e.target.value); speech.setVoice(e.target.value); }}>
+                {speech.voices.map((v) => <option key={v.name} value={v.name}>{v.name}</option>)}
+              </select>
+              <button type="button" className="btn" onClick={() => speech.speak(["Hi. When things get loud, I'll read your plan out to you."])}>
+                <Icon name="sound" /> Try
+              </button>
+            </div>
+            <p className="tiny muted" style={{ marginTop: 6 }}>Pick the voice you find easiest to listen to.</p>
+          </>
+        )}
 
         <h2 style={{ margin: "20px 0 8px" }}>Anything else we should know?</h2>
         <textarea value={form.notes ?? ""} onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
